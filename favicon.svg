@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="The Image Club logo">
+  <path class="wire" d="M20 92 C 60 40, 180 40, 220 92" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <!-- left clothespin -->
+  <rect x="70" y="22" width="52" height="12" rx="5" fill="currentColor"/>
+  <!-- left print: solid black -->
+  <rect x="70" y="100" width="52" height="56" fill="currentColor"/>
+  <!-- right clothespin -->
+  <rect x="110" y="24" width="46" height="12" rx="5" fill="currentColor"/>
+  <!-- right print: outlined -->
+  <rect class="outlined" x="112" y="62" width="52" height="66" fill="none" stroke="currentColor" stroke-width="4"/>
+</svg>
