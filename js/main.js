@@ -20,16 +20,4 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
   });
 });
 
-if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const io = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        io.unobserve(entry.target);
-      }
-    }
-  }, { threshold: 0.15 });
-  document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
-} else {
-  document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("visible"));
-}
+/* Scroll reveal is handled by CSS scroll-driven animations (see style.css). */

@@ -161,21 +161,23 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 .footer-copy { font-family: "Cormorant Garamond", serif; font-size: 1.25rem; text-align: center; color: var(--mid); }
 .footer-copy .arabic { font-weight: 700; }
 
-/* Scroll reveal: content is visible by default; the hidden pre-state applies
-   only under html.js while an element has not yet become .visible. No hidden
-   state at all under prefers-reduced-motion (JS adds .visible up front). */
-[data-reveal] {
-  opacity: 1;
-  transform: none;
-  transition: opacity .6s ease, transform .6s ease;
-}
-html.js [data-reveal]:not(.visible) {
-  opacity: 0;
-  transform: translateY(12px);
+/* Scroll reveal via CSS scroll-driven animations: content is fully visible
+   unless the browser supports animation-timeline (only then does the entry
+   animation apply), so print, screenshots, crawlers and older browsers all
+   render everything. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1; transform: none; }
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
 }
 
 @media (max-width: 480px) {
