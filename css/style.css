@@ -121,6 +121,11 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 .section-label::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
 .prose { font-size: clamp(1.05rem, 2vw, 1.4rem); max-width: 62ch; line-height: 1.6; }
 .muted-prose { color: var(--mid); font-size: .9rem; }
+.sprocket {
+  height: 6px; margin: clamp(2rem, 4vh, 3rem) 0;
+  background: repeating-linear-gradient(90deg, var(--mid) 0 1.5px, transparent 1.5px 9px);
+  opacity: .4;
+}
 .on-dark .section-label { color: color-mix(in srgb, var(--paper) 55%, transparent); }
 .on-dark .section-label::after { background: color-mix(in srgb, var(--paper) 30%, transparent); }
 .dark { background: var(--dark); color: var(--on-dark); }

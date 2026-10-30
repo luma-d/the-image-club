@@ -1,11 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="The Image Club logo">
-  <path class="wire" d="M20 92 C 60 40, 180 40, 220 92" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-  <!-- left clothespin -->
-  <rect x="70" y="22" width="52" height="12" rx="5" fill="currentColor"/>
-  <!-- left print: solid black -->
-  <rect x="70" y="100" width="52" height="56" fill="currentColor"/>
-  <!-- right clothespin -->
-  <rect x="110" y="24" width="46" height="12" rx="5" fill="currentColor"/>
-  <!-- right print: outlined -->
-  <rect class="outlined" x="112" y="62" width="52" height="66" fill="none" stroke="currentColor" stroke-width="4"/>
+  <!-- sagging clothesline (gentle downward sag, slight asymmetry for life) -->
+  <path d="M25 60 C 90 110, 150 110, 220 60" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <!-- left clothespin straddling the wire at x=80 (wire y≈88) -->
+  <rect x="74" y="84" width="12" height="12" rx="6" fill="currentColor"/>
+  <!-- left print: solid black rectangle -->
+  <rect x="74" y="96" width="52" height="58" fill="currentColor"/>
+  <!-- right clothespin straddling the wire at x=168 (wire y≈96) -->
+  <rect x="162" y="93" width="12" height="12" rx="6" fill="currentColor"/>
+  <!-- right print: outlined rectangle, slightly different size/height -->
+  <rect class="print-outlined" x="162" y="108" width="52" height="56" fill="none" stroke="currentColor" stroke-width="4"/>
 </svg>
