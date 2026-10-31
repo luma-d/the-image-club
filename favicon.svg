@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="The Image Club logo">
-  <path d="M8 36 C 60 46, 180 46, 232 30" fill="none" stroke="#141414" stroke-width="3.5" stroke-linecap="round"/>
-  <rect x="50" y="46" width="62" height="106" fill="#141414"/>
-  <rect x="124" y="46" width="64" height="102" fill="none" stroke="#141414" stroke-width="4"/>
-  <rect x="76" y="46" width="24" height="34" fill="#f4f2ed"/>
-  <rect x="80" y="14" width="16" height="44" rx="2" fill="#b23a2b"/>
-  <rect x="148" y="14" width="16" height="44" rx="2" fill="#b23a2b"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160">
+  <rect width="240" height="160" rx="24" fill="#141413"/>
+  <path d="M8 36 C 60 46, 180 46, 232 30" fill="none" stroke="#f4f2ed" stroke-width="3.5" stroke-linecap="round"/>
+  <rect x="50" y="46" width="62" height="106" fill="none" stroke="#f4f2ed" stroke-width="4"/>
+  <rect x="124" y="46" width="64" height="102" fill="#f4f2ed"/>
+  <rect x="73" y="16" width="16" height="44" rx="2" fill="#c8493a"/>
+  <rect x="148" y="16" width="16" height="44" rx="2" fill="#c8493a"/>
 </svg>
