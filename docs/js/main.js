@@ -1,5 +1,5 @@
 /* js/main.js — vanilla, no build step */
-const IG_HANDLE = "theimageclub";
+const IG_HANDLE = "the.image.club";
 const IG_URL = "https://www.instagram.com/" + IG_HANDLE;
 
 document.querySelector(".hamburger")?.addEventListener("click", () => {

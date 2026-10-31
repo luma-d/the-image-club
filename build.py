@@ -57,7 +57,7 @@ PAGE = '''<!DOCTYPE html>
     <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="nav-links">
 {NAV_LINKS}      <button class="lang-btn" id="langBtn" aria-label="Switch language — تبديل اللغة"><span class="en">العربية</span><span class="ar" lang="ar" dir="rtl">English</span></button>
-      <a class="ig-link" href="https://www.instagram.com/theimageclub" aria-label="Instagram" target="_blank" rel="noopener">
+      <a class="ig-link" href="https://www.instagram.com/the.image.club" aria-label="Instagram" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/></svg>
       </a>
     </nav>
@@ -116,14 +116,14 @@ PAGE = '''<!DOCTYPE html>
   <section class="block invert" id="membership">
     <p class="section-label"><span class="en">03 — Membership</span><span class="ar" lang="ar" dir="rtl">٠٣ — العضوية</span></p>
     <h2>{MEMBERSHIP_H2}</h2>
-    <a class="btn btn-outline" href="https://www.instagram.com/theimageclub" target="_blank" rel="noopener">{MEMBERSHIP_BTN}</a>
+    <a class="btn btn-outline" href="https://www.instagram.com/the.image.club" target="_blank" rel="noopener">{MEMBERSHIP_BTN}</a>
   </section>
 
 
   <section class="block" data-reveal id="contact">
     <p class="section-label"><span class="en">04 — Contact</span><span class="ar" lang="ar" dir="rtl">٠٤ — تواصل</span></p>
     <p class="prose"><strong>{LOCATION}</strong></p>
-    <p class="prose"><span class="ig-handle">@theimageclub</span> &nbsp;·&nbsp; <a class="mail" href="mailto:hello@theimageclub.com">hello@theimageclub.com</a></p>
+    <p class="prose"><span class="ig-handle">@the.image.club</span> &nbsp;·&nbsp; <a class="mail" href="mailto:hi@theimageclub.org">hi@theimageclub.org</a></p>
   </section>
 </main>
 
