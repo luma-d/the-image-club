@@ -55,3 +55,13 @@ python3 build.py     # rebuild docs/ from content/ (prints every file written)
 تحرير النصوص يتم داخل ملفات `content/` كنصٍّ عادي، ثم يُشغَّل
 `python3 build.py` لإعادة بناء الصفحة النهائية داخل مجلد `docs/` — وهو
 المجلّد الذي ينشره GitHub Pages من فرع `main`.
+
+## Deploying
+
+Edit the files in `content/`, then run:
+
+```
+./deploy.sh "what changed"
+```
+
+That rebuilds `docs/`, pushes the source, and publishes to https://luma-d.github.io/the-image-club/
