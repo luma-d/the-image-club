@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 # Start The Image Club site locally + a public demo URL.
+# Rebuilds docs/ from content/, then serves docs/ on 127.0.0.1:8000.
 # Usage: ./start.sh   (run from anywhere; safe to re-run)
 set -euo pipefail
 cd "$(dirname "$0")"
 PORT=8000
 
-# Static server
+# Rebuild docs/ from the markdown content
+python3 build.py
+
+# Static server (serves docs/)
 if ! curl -s -o /dev/null http://127.0.0.1:$PORT/; then
-  setsid -f sh -c "exec python3 -m http.server $PORT --bind 127.0.0.1 > /tmp/image-club-web.log 2>&1"
+  setsid -f sh -c "exec python3 -m http.server $PORT --bind 127.0.0.1 --directory docs > /tmp/image-club-web.log 2>&1"
   sleep 1
 fi
 echo "Local:  http://127.0.0.1:$PORT/"
