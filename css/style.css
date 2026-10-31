@@ -34,6 +34,8 @@ html.lang-ar .nav-links a .ar, html.lang-ar .lang-btn .ar { letter-spacing: 0; t
 html.lang-ar .soon-pill { letter-spacing: .05em; }
 html.lang-ar .btn .ar { letter-spacing: .1em; text-transform: none; }
 html.lang-ar .section-label .ar { letter-spacing: .12em; }
+html.lang-ar .prose { margin-left: auto; margin-right: 0; }
+html.lang-ar .section-label { flex-direction: row-reverse; }
 
 h1, h2, h3 { font-family: "Cormorant Garamond", serif; font-weight: 500; margin: 0; }
 a { color: inherit; }
@@ -80,7 +82,7 @@ a { color: inherit; }
 .brand { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); }
 .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
 .wordmark { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: 1.25rem; letter-spacing: .02em; white-space: nowrap; }
-.wordmark-ar { font-family: "Amiri", serif; font-size: .95rem; color: var(--mid); white-space: nowrap; margin-top: .35rem; }
+.wordmark-ar { font-family: "Amiri", serif; font-size: .95rem; color: inherit; white-space: nowrap; margin-top: .35rem; }
 .logo-mark { display: block; }
 .pin { fill: var(--red); }
 
@@ -88,11 +90,11 @@ a { color: inherit; }
 .nav-links a { font-family: "Inter", sans-serif; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; }
 .ig-link { display: inline-flex; opacity: .85; transition: opacity .15s; }
 .lang-btn {
-  background: none; border: 1px solid var(--hairline); color: inherit; cursor: pointer;
+  background: none; border: 1px solid var(--red); color: var(--red); cursor: pointer;
   font-family: "Inter", sans-serif; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
   padding: .35rem .7rem;
 }
-.lang-btn:hover { border-color: var(--ink); }
+.lang-btn:hover { border-color: var(--red); background: color-mix(in srgb, var(--red) 12%, transparent); }
 .ig-link:hover { opacity: 1; }
 .nav-links a:hover, .ig-link:hover { text-decoration: underline; }
 
@@ -124,7 +126,7 @@ a { color: inherit; }
 }
 .logo-mark.hero-mark { width: min(42vmin, 200px); margin-bottom: 1.5rem; }
 h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
-.arabic-lg { font-size: clamp(2rem, 4.5vw, 3.2rem); margin: .4rem 0 1rem; font-weight: 700; }
+.arabic-lg { font-size: clamp(2rem, 4.5vw, 3.2rem); margin: .1rem 0 1rem; font-weight: 700; }
 .tagline { font-family: "Inter", sans-serif; font-size: clamp(1rem, 1.5vw, 1.125rem); color: var(--mid); max-width: 40ch; margin: 0 auto 1.6rem; }
 .soon-pill {
   display: inline-block; border: 1px solid var(--red); padding: .35rem 1rem;
@@ -152,17 +154,21 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 .about-ar p:last-child { margin-bottom: 0; }
 .about-close-ar { font-weight: 700; }
 .muted-prose { color: var(--mid); font-size: .9rem; }
-.sprocket {
-  height: 6px; margin: clamp(2rem, 4vh, 3rem) 0;
-  background: repeating-linear-gradient(90deg, var(--mid) 0 1.5px, transparent 1.5px 9px);
-  opacity: .4;
+/* Film-strip divider between sections: dark film edge with sprocket holes */
+.filmstrip {
+  width: min(320px, 70%); height: 18px; margin: 1rem auto;
+  background-color: #141413;
+  background-image: repeating-linear-gradient(90deg, transparent 0 7px, #f4f2ed 7px 19px, transparent 19px 28px);
+  background-size: 100% 6px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+.invert .filmstrip { background-color: #141414; }
 /* Sections alternate dark → light → dark ... */
 .invert {
   background: #f4f2ed; color: #141414;
   --ink: #141414; --mid: #6b6b6b; --hairline: #d8d5cd;
   --paper: #f4f2ed; --dark: #f4f2ed; --on-dark: #141414;
-  border-top: 1px solid #d8d5cd; border-bottom: 1px solid #d8d5cd;
 }
 .invert h2 { font-size: clamp(2rem, 5vw, 3.2rem); }
 
@@ -206,7 +212,7 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 
 /* Footer */
 .site-footer {
-  background: var(--paper); border-top: 1px solid var(--hairline);
+  background: var(--paper);
   display: flex; flex-direction: column; align-items: center; gap: 1.2rem; padding: 4rem 1.5rem 2rem;
 }
 .logo-badge { width: 150px; color: var(--ink); }
