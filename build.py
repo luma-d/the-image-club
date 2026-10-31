@@ -79,13 +79,11 @@ PAGE = '''<!DOCTYPE html>
     <span class="soon-pill">{PILL}</span>
   </section>
 
-  <div class="filmstrip" aria-hidden="true"></div>
 
   <section class="block invert" data-reveal id="about">
     <p class="section-label"><span class="en">01 — About</span><span class="ar" lang="ar" dir="rtl">٠١ — حول</span></p>
 {ABOUT_PARAS}  </section>
 
-  <div class="filmstrip" aria-hidden="true"></div>
 
   <section class="block" data-reveal id="workshops">
     <p class="section-label"><span class="en">02 — Workshops</span><span class="ar" lang="ar" dir="rtl">٠٢ — الورش</span></p>
@@ -114,7 +112,6 @@ PAGE = '''<!DOCTYPE html>
     </div>
   </section>
 
-  <div class="filmstrip" aria-hidden="true"></div>
 
   <section class="block invert" id="membership">
     <p class="section-label"><span class="en">03 — Membership</span><span class="ar" lang="ar" dir="rtl">٠٣ — العضوية</span></p>
@@ -122,7 +119,6 @@ PAGE = '''<!DOCTYPE html>
     <a class="btn btn-outline" href="https://www.instagram.com/theimageclub" target="_blank" rel="noopener">{MEMBERSHIP_BTN}</a>
   </section>
 
-  <div class="filmstrip" aria-hidden="true"></div>
 
   <section class="block" data-reveal id="contact">
     <p class="section-label"><span class="en">04 — Contact</span><span class="ar" lang="ar" dir="rtl">٠٤ — تواصل</span></p>
@@ -131,7 +127,6 @@ PAGE = '''<!DOCTYPE html>
   </section>
 </main>
 
-<div class="filmstrip" aria-hidden="true"></div>
 
 <footer class="site-footer invert">
   <svg class="logo-badge" viewBox="-30 -66 300 300" role="img" aria-label="The Image Club logo badge">
@@ -294,6 +289,7 @@ def main():
     shutil.copy2(ROOT / "favicon.svg", DOCS / "favicon.svg")
     written.append(DOCS / "favicon.svg")
     copy_tree(ROOT / "assets", DOCS / "assets")
+    (DOCS / "CNAME").write_text("theimageclub.org\n", encoding="utf-8")
 
     for d in sorted(written):
         print("wrote", d.relative_to(ROOT))

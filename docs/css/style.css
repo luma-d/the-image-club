@@ -135,7 +135,7 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 }
 
 /* Sections */
-.block { padding: clamp(4rem, 10vh, 8rem) 1.5rem; max-width: 1100px; margin: 0 auto; }
+.block { padding: clamp(4rem, 10vh, 8rem) max(1.5rem, calc((100% - 1100px) / 2)); }
 .section-label {
   font-family: "Inter", sans-serif; font-size: clamp(1.05rem, 2vw, 1.4rem); letter-spacing: .15em; text-transform: uppercase;
   color: inherit; margin-bottom: 1rem;
@@ -154,15 +154,6 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 .muted-prose { color: var(--mid); font-size: .9rem; }
 /* Film-strip divider between sections: full-width film edge with a single row
    of perforations close to the edges (holes 15% taller than wide) */
-.filmstrip {
-  width: 100%; height: 16px; margin: 1.5rem 0;
-  background-color: #141413;
-  background-image: repeating-linear-gradient(90deg, transparent 0 7.4px, #f4f2ed 7.4px 16.6px, transparent 16.6px 24px);
-  background-size: 100% 10.6px;
-  background-position: 0 2.7px;
-  background-repeat: repeat-x;
-}
-/* Sections alternate dark → light → dark ... */
 .invert {
   background: #f4f2ed; color: #141414;
   --ink: #141414; --mid: #6b6b6b; --hairline: #d8d5cd;
