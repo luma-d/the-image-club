@@ -126,7 +126,7 @@ a { color: inherit; }
 }
 .logo-mark.hero-mark { width: min(42vmin, 200px); margin-bottom: 1.5rem; }
 h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
-.arabic-lg { font-size: clamp(2rem, 4.5vw, 3.2rem); margin: .1rem 0 1rem; font-weight: 700; }
+.arabic-lg { font-size: clamp(2rem, 4.5vw, 3.2rem); margin: -.3rem 0 1rem; font-weight: 700; }
 .tagline { font-family: "Inter", sans-serif; font-size: clamp(1rem, 1.5vw, 1.125rem); color: var(--mid); max-width: 40ch; margin: 0 auto 1.6rem; }
 .soon-pill {
   display: inline-block; border: 1px solid var(--red); padding: .35rem 1rem;
@@ -139,9 +139,7 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 .section-label {
   font-family: "Inter", sans-serif; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
   color: var(--mid); margin-bottom: 1rem;
-  display: flex; align-items: center; gap: .9rem;
 }
-.section-label::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
 .prose { font-size: clamp(1.05rem, 2vw, 1.4rem); max-width: 62ch; line-height: 1.6; }
 .about-close { font-style: italic; margin-top: 1.75rem; }
 .about-ar {
@@ -154,16 +152,18 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 .about-ar p:last-child { margin-bottom: 0; }
 .about-close-ar { font-weight: 700; }
 .muted-prose { color: var(--mid); font-size: .9rem; }
-/* Film-strip divider between sections: dark film edge with sprocket holes */
+/* Film-strip divider between sections: full-width film edge with two rows of
+   perforations near the edges, like a real 35mm roll (holes 15% taller than wide) */
 .filmstrip {
-  width: min(320px, 70%); height: 18px; margin: 1rem auto;
-  background-color: #141413;
-  background-image: repeating-linear-gradient(90deg, transparent 0 7px, #f4f2ed 7px 19px, transparent 19px 28px);
-  background-size: 100% 6px;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 100%; height: 44px; margin: 1.5rem 0;
+  background-color: #0d0d0c;
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 8px, #f4f2ed 8px 21px, transparent 21px 30px),
+    repeating-linear-gradient(90deg, transparent 0 8px, #f4f2ed 8px 21px, transparent 21px 30px);
+  background-size: 100% 15px, 100% 15px;
+  background-position: 0 6px, 0 23px;
+  background-repeat: repeat-x, repeat-x;
 }
-.invert .filmstrip { background-color: #141414; }
 /* Sections alternate dark → light → dark ... */
 .invert {
   background: #f4f2ed; color: #141414;
@@ -205,10 +205,10 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 .btn {
   display: inline-block; margin-top: 2rem; padding: .9rem 2rem;
   font-family: "Inter", sans-serif; font-size: .8rem; letter-spacing: .25em; text-transform: uppercase;
-  text-decoration: none; border: 1px solid var(--on-dark); color: var(--on-dark); cursor: pointer;
+  text-decoration: none; border: 1px solid var(--red); color: var(--red); cursor: pointer;
 }
 .btn-outline { background: transparent; }
-.btn-outline:hover { background: var(--on-dark); color: var(--dark); }
+.btn-outline:hover { background: color-mix(in srgb, var(--red) 12%, transparent); }
 
 /* Footer */
 .site-footer {
