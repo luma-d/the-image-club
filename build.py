@@ -92,19 +92,7 @@ PAGE = '''<!DOCTYPE html>
 {CARDS}    </div>
     <div class="carousel" aria-label="Photos from our first workshops">
       <div class="car-track">
-        <figure><img src="assets/gallery/01.jpg" alt="Cyanotype workshop participant preparing plants and negatives, Damascus, September 2026" loading="lazy" decoding="async" /></figure>
-        <figure><img src="assets/gallery/02.jpg" alt="Cyanotype exposures on a rooftop in Damascus, September 2026" loading="lazy" decoding="async" /></figure>
-        <figure><img src="assets/gallery/03.jpg" alt="Participants coating paper at the cyanotype workshop table, Damascus, September 2026" loading="lazy" decoding="async" /></figure>
-        <figure><img src="assets/gallery/04.jpg" alt="Cyanotype prints and negatives drying under the sun, Damascus, September 2026" loading="lazy" decoding="async" /></figure>
-        <figure><img src="assets/gallery/05.jpg" alt="Workshop session in a Damascene courtyard house, September 2026" loading="lazy" decoding="async" /></figure>
-        <figure><img src="assets/gallery/06.jpg" alt="Participant preparing objects for a cyanotype exposure, Damascus, September 2026" loading="lazy" decoding="async" /></figure>
-        <figure><img src="assets/gallery/07.jpg" alt="Film developing workshop around the workshop tables, Damascus, September 2026" loading="lazy" decoding="async" /></figure>
-        <figure><img src="assets/gallery/08.jpg" alt="Black and white film developing session with tanks and chemistry, Damascus, September 2026" loading="lazy" decoding="async" /></figure>
-        <figure><img src="assets/gallery/09.jpg" alt="Participants pouring chemistry during a film developing workshop, Damascus, September 2026" loading="lazy" decoding="async" /></figure>
-        <figure><img src="assets/gallery/10.jpg" alt="C-41 colour developing explained at the whiteboard, Damascus, September 2026" loading="lazy" decoding="async" /></figure>
-        <figure><img src="assets/gallery/11.jpg" alt="Film developing workshop discussion around the table, Damascus, September 2026" loading="lazy" decoding="async" /></figure>
-        <figure><img src="assets/gallery/12.jpg" alt="Cyanotype plate with flowers and blue clips on the workshop table, Damascus, September 2026" loading="lazy" decoding="async" /></figure>
-      </div>
+{CAROUSEL}      </div>
       <div class="car-controls">
         <button class="car-btn car-prev" aria-label="Previous photos">←</button>
         <button class="car-btn car-next" aria-label="Next photos">→</button>
@@ -247,6 +235,22 @@ def main():
     if not c_en or not c_ar:
         raise SystemExit("contact.md: needs a location line")
 
+    # Carousel: one slide per image in assets/gallery/, sorted by filename.
+    # Optional content/gallery.md: one alt-text line per image, same order.
+    gallery_dir = ROOT / "assets" / "gallery"
+    imgs = sorted(p.name for p in gallery_dir.iterdir()
+                  if p.suffix.lower() in (".jpg", ".jpeg", ".png", ".webp"))
+    alts = []
+    gpath = CONTENT / "gallery.md"
+    if gpath.exists():
+        alts = [l.strip() for l in gpath.read_text(encoding="utf-8").splitlines()
+                if l.strip() and not l.startswith("#")]
+    carousel = "".join(
+        '        <figure><img src="assets/gallery/%s" alt="%s" loading="lazy" decoding="async" /></figure>\n'
+        % (name, html.escape(alts[i] if i < len(alts)
+             else "From the club's workshops in Damascus, September 2026"))
+        for i, name in enumerate(imgs))
+
     # Footer: one line per item, joined with <br>.
     footer_en = "<br />".join(html.escape(l) for l in footer[0] if l.strip())
     footer_ar = "<br />".join(html.escape(l) for l in footer[1] if l.strip())
@@ -258,6 +262,7 @@ def main():
         ABOUT_PARAS="".join(about_paras),
         WORKSHOPS_INTRO=pair(w_en[0], w_ar[0]),
         CARDS="".join(cards),
+        CAROUSEL=carousel,
         MEMBERSHIP_H2=pair(m_en[0], m_ar[0]),
         MEMBERSHIP_BTN=pair(m_en[1], m_ar[1]),
         LOCATION=pair(c_en[0], c_ar[0]),

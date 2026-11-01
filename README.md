@@ -70,6 +70,16 @@ Rules to keep in the files:
 - In `about.md`, a line starting with `> ` is the italic closing line.
 - Don't rename or delete the files.
 
+## Photos (add / replace / remove)
+
+Photos live in the `assets/gallery/` folder and the carousel shows every image in it, sorted by filename. To manage them from the browser:
+
+- **Replace a photo:** open `assets/gallery/`, click the file (e.g. `05.jpg`) → **Edit (pencil)** is not for images — instead: delete the old file (trash icon) and use **Add file → Upload files** to upload the new one **with the same name**.
+- **Add a photo:** **Add file → Upload files** into `assets/gallery/`. Name it with the next number (`13.jpg`, `14.jpg`, …) to control its position in the carousel.
+- **Remove a photo:** open the file in `assets/gallery/` and click the trash icon.
+- Upload big phone/WhatsApp photos as-is — they are resized and compressed automatically when the site publishes.
+- Optionally describe each photo (one line per image, in order) in `content/gallery.md` — this helps screen readers and Google.
+
 ## Deploying from your computer (optional)
 
 Edit the files in `content/`, then run:

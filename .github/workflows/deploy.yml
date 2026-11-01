@@ -15,6 +15,19 @@ jobs:
         with:
           python-version: "3.12"
       - run: python3 build.py
+      - name: Optimize gallery images
+        run: |
+          pip install --quiet pillow
+          python3 - <<'EOF'
+          from PIL import Image, ImageOps
+          import glob
+          for p in glob.glob("docs/assets/gallery/*"):
+              if p.rsplit(".", 1)[-1].lower() not in ("jpg", "jpeg", "png", "webp"):
+                  continue
+              im = ImageOps.exif_transpose(Image.open(p)).convert("RGB")
+              im.thumbnail((1600, 1600), Image.LANCZOS)
+              im.save(p, "JPEG", quality=82, optimize=True, progressive=True)
+          EOF
       - name: Publish docs/ to gh-pages
         run: |
           cd docs
