@@ -56,7 +56,21 @@ python3 build.py     # rebuild docs/ from content/ (prints every file written)
 `python3 build.py` لإعادة بناء الصفحة النهائية داخل مجلد `docs/` — وهو
 المجلّد الذي ينشره GitHub Pages من فرع `main`.
 
-## Deploying
+## Editing the text (no technical skills needed)
+
+1. Open https://github.com/luma-d/the-image-club/tree/master/content
+2. Click a file (e.g. `about.md`), then the **pencil icon** to edit.
+3. Change the text between `## en` (English) and `## ar` (Arabic), then **Commit changes**.
+4. The site rebuilds and publishes by itself within about a minute — no commands, no uploads.
+
+Rules to keep in the files:
+- Keep the `## en` and `## ar` headings.
+- Separate paragraphs with a blank line.
+- In `workshops.md`, each workshop is `### Title` followed by its description paragraph.
+- In `about.md`, a line starting with `> ` is the italic closing line.
+- Don't rename or delete the files.
+
+## Deploying from your computer (optional)
 
 Edit the files in `content/`, then run:
 
