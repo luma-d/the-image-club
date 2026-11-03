@@ -4,6 +4,6 @@ A new home for photography is coming to Damascus.
 Coming soon
 
 ## ar
-بيتٌ جديد للتصوير الفوتوغرافي في طريقه إلى دمشق.
+وجهة جديدة للتصوير الفوتوغرافي في دمشق .
 
 قريبًا
