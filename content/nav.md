@@ -2,10 +2,10 @@
 About
 Workshops
 Membership
-Contact
+Contact us
 
 ## ar
-حول
+عن النادي
 الورش
 العضوية
-تواصل
+تواصل معنا
