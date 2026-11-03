@@ -11,7 +11,7 @@ refreshes the copied `css/`, `js/`, `favicon.svg` and `assets/` inside
 |---|---|
 | `content/hero.md` | paragraph 1 = hero tagline, paragraph 2 = pill text |
 | `content/about.md` | about paragraphs; a line starting `> ` becomes the italic closer |
-| `content/workshops.md` | paragraph 1 = intro; then one `### Card title` + paragraph per workshop card (exactly 3; numbered 01–03 automatically) |
+| `content/workshops.md` | paragraph 1 = intro; then one `### Card title` per workshop card, optionally followed by a description paragraph (cards numbered 01–03 automatically) |
 | `content/membership.md` | paragraph 1 = heading, paragraph 2 = button label |
 | `content/contact.md` | paragraph 1 = bold location line (the email and Instagram handle are fixed in `build.py`) |
 | `content/footer.md` | footer lines, one per line; joined with `<br>` in the output |
@@ -64,11 +64,18 @@ python3 build.py     # rebuild docs/ from content/ (prints every file written)
 4. The site rebuilds and publishes by itself within about a minute — no commands, no uploads.
 
 Rules to keep in the files:
-- Keep the `## en` and `## ar` headings.
+- Keep the `## en` and `## ar` headings. (If they ever get renamed to
+  `## English` / `## Arabic` / `## عربي`, the build still understands them.)
 - Separate paragraphs with a blank line.
-- In `workshops.md`, each workshop is `### Title` followed by its description paragraph.
+- In `workshops.md`, each workshop is a `### Title` line; the description
+  under it is optional — delete it freely.
 - In `about.md`, a line starting with `> ` is the italic closing line.
 - Don't rename or delete the files.
+
+Everything else is free-form: change any text, add or remove paragraphs,
+add new sections — the site republishes regardless. If something in a file
+is unclear, the build still publishes the site and leaves a note in the
+Actions log saying what to look at.
 
 ## Photos (add / replace / remove)
 

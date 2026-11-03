@@ -138,17 +138,46 @@ PAGE = '''<!DOCTYPE html>
 '''
 
 
+LANG_HEADINGS = {
+    "en": {"en", "english", "english (en)", "english(en)"},
+    "ar": {"ar", "arabic", "عربي", "عربية", "العربية", "عربى"},
+}
+
+
 def parse_md(path: Path):
-    """Return (en_lines, ar_lines): raw lines of the two blocks."""
+    """Return (en_lines, ar_lines): raw lines of the two language blocks.
+
+    Tolerant of non-technical edits: a missing file, headings renamed to
+    "## English" / "## Arabic" / "## عربي", a BOM, or text left outside
+    any heading — all still publish, with a warning naming what to fix.
+    """
+    if not path.exists():
+        print("warning: content/%s is missing; publishing without it" % path.name)
+        return [], []
+    text = path.read_text(encoding="utf-8-sig")
     en, ar = [], []
-    mode = None
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if line.strip() == "## en":
-            mode = "en"
-        elif line.strip() == "## ar":
-            mode = "ar"
-        elif mode:
-            (en if mode == "en" else ar).append(line)
+    blocks = {"en": en, "ar": ar}
+    mode, seen_heading, pre = None, False, []
+    for line in text.splitlines():
+        s = line.strip().rstrip(":：").strip().lower()
+        if s.startswith("## "):
+            name = s[3:].strip()
+            seen_heading = True
+            mode = next((lang for lang, names in LANG_HEADINGS.items()
+                         if name in names), None)
+            if mode is None:
+                print("warning: content/%s has an unknown heading %r — text "
+                      "under it is skipped (use ## en and ## ar)"
+                      % (path.name, line.strip()))
+            continue
+        if mode:
+            blocks[mode].append(line)
+        elif not seen_heading:
+            pre.append(line)
+    if pre and not en:
+        print("warning: content/%s has text before the first heading — "
+              "treating it as English" % path.name)
+        en[:0] = pre
     return en, ar
 
 
@@ -328,4 +357,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception as exc:  # never take the live site down over a build bug
+        print("build failed: %s — the previous site stays published" % exc)
+        raise SystemExit(1)
