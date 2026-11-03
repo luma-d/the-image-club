@@ -34,9 +34,10 @@ document.getElementById("langBtn")?.addEventListener("click", () => {
   try { localStorage.setItem("tic-lang", ar ? "ar" : "en"); } catch (e) { /* ignore */ }
 });
 
-/* Workshop photo carousel */
+/* Workshop photo carousel (scroll direction follows the language) */
 const carTrack = document.querySelector(".car-track");
+const carDir = () => (carTrack && getComputedStyle(carTrack).direction === "rtl" ? -1 : 1);
 document.querySelector(".car-prev")?.addEventListener("click", () =>
-  carTrack?.scrollBy({ left: -carTrack.clientWidth * 0.9, behavior: "smooth" }));
+  carTrack?.scrollBy({ left: -carDir() * carTrack.clientWidth * 0.9, behavior: "smooth" }));
 document.querySelector(".car-next")?.addEventListener("click", () =>
-  carTrack?.scrollBy({ left: carTrack.clientWidth * 0.9, behavior: "smooth" }));
+  carTrack?.scrollBy({ left: carDir() * carTrack.clientWidth * 0.9, behavior: "smooth" }));
