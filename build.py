@@ -82,12 +82,12 @@ PAGE = '''<!DOCTYPE html>
 
 
   <section class="block invert" data-reveal id="about">
-    <p class="section-label"><span class="en">01 — About</span><span class="ar" lang="ar" dir="rtl">٠١ — حول</span></p>
+    <p class="section-label">{SEC1}</p>
 {ABOUT_PARAS}  </section>
 
 
   <section class="block" data-reveal id="workshops">
-    <p class="section-label"><span class="en">02 — Workshops</span><span class="ar" lang="ar" dir="rtl">٠٢ — الورش</span></p>
+    <p class="section-label">{SEC2}</p>
     <p class="prose muted-prose">{WORKSHOPS_INTRO}</p>
     <div class="cards">
 {CARDS}    </div>
@@ -103,14 +103,14 @@ PAGE = '''<!DOCTYPE html>
 
 
   <section class="block invert" id="membership">
-    <p class="section-label"><span class="en">03 — Membership</span><span class="ar" lang="ar" dir="rtl">٠٣ — العضوية</span></p>
+    <p class="section-label">{SEC3}</p>
     <h2>{MEMBERSHIP_H2}</h2>
     <a class="btn btn-outline" href="https://www.instagram.com/the.image.club" target="_blank" rel="noopener">{MEMBERSHIP_BTN}</a>
   </section>
 
 
   <section class="block" data-reveal id="contact">
-    <p class="section-label"><span class="en">04 — Contact</span><span class="ar" lang="ar" dir="rtl">٠٤ — تواصل</span></p>
+    <p class="section-label">{SEC4}</p>
     <p class="prose"><strong>{LOCATION}</strong></p>
     <p class="prose"><span class="ig-handle">@the.image.club</span> &nbsp;·&nbsp; <a class="mail" href="mailto:hi@theimageclub.org">hi@theimageclub.org</a></p>
   </section>
@@ -222,6 +222,16 @@ def main():
         for anchor, en, ar in zip_longest(NAV_ANCHORS, nav[0], nav[1], fillvalue="")
     )
 
+    # Section labels ("01 — About") reuse the nav.md labels, so editing a
+    # label in nav.md updates both the top bar and the section heading.
+    AR_NUMS = ("٠١", "٠٢", "٠٣", "٠٤")
+    sec_labels = {
+        i: ('<span class="en">%02d — %s</span>'
+            '<span class="ar" lang="ar" dir="rtl">%s — %s</span>'
+            % (i, html.escape(en), AR_NUMS[i - 1], html.escape(ar)))
+        for i, (en, ar) in enumerate(zip_longest(nav[0], nav[1], fillvalue=""), 1)
+    }
+
     # Hero: paragraph 1 = tagline, paragraph 2 = pill.
     hero_en, hero_ar = paragraphs(hero[0]), paragraphs(hero[1])
     if len(hero_en) < 2 or len(hero_ar) < 2:
@@ -313,6 +323,8 @@ def main():
 
     page = PAGE.format(
         NAV_LINKS=nav_links,
+        SEC1=sec_labels.get(1, ""), SEC2=sec_labels.get(2, ""),
+        SEC3=sec_labels.get(3, ""), SEC4=sec_labels.get(4, ""),
         TAGLINE=pair(hero_en[0], hero_ar[0]),
         PILL=pair(hero_en[1], hero_ar[1]),
         ABOUT_PARAS="".join(about_paras),

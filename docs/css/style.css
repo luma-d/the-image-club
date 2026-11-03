@@ -31,6 +31,7 @@ html.lang-ar .ar { display: inline; }
 html.lang-ar .ar { font-family: "Amiri", serif; }
 html.lang-ar .prose .ar { line-height: 2.1; }
 html.lang-ar .nav-links a .ar, html.lang-ar .lang-btn .ar { letter-spacing: 0; text-transform: none; }
+html.lang-ar .nav-links { direction: rtl; }
 html.lang-ar .soon-pill { letter-spacing: .05em; }
 html.lang-ar .btn .ar { letter-spacing: .1em; text-transform: none; }
 html.lang-ar .section-label .ar { letter-spacing: .12em; }
@@ -92,7 +93,7 @@ a { color: inherit; }
 .pin { fill: var(--red); }
 
 .nav-links { display: flex; align-items: center; gap: 1.6rem; }
-.nav-links a { font-family: "Inter", sans-serif; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; }
+.nav-links a { font-family: "Inter", sans-serif; font-size: .9rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; }
 .ig-link { display: inline-flex; opacity: .85; transition: opacity .15s; }
 .lang-btn {
   background: none; border: 1px solid var(--red); color: var(--red); cursor: pointer;
