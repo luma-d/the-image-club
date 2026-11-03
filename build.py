@@ -13,6 +13,7 @@ Idempotent: every run rebuilds docs/ from scratch.
 
 import html
 import shutil
+from itertools import zip_longest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -195,13 +196,20 @@ def main():
     if len(hero_en) < 2 or len(hero_ar) < 2:
         raise SystemExit("hero.md: needs a tagline and a pill line")
 
-    # About: paragraphs; a `> ` line renders as the italic closer.
+    # About: paragraphs; `> ` renders as the italic closer; `### ` as a heading.
     about_en, about_ar = paragraphs(about[0]), paragraphs(about[1])
     if len(about_en) != len(about_ar):
-        raise SystemExit("about.md: en/ar paragraph counts differ")
+        print("warning: about.md has %d en paragraphs but %d ar — pairing what "
+              "matches; extras will show in one language only"
+              % (len(about_en), len(about_ar)))
     about_paras = []
-    for en, ar in zip(about_en, about_ar):
-        closer = en.startswith("> ")
+    for en, ar in zip_longest(about_en, about_ar, fillvalue=""):
+        if en.startswith("### ") or ar.startswith("### "):
+            about_paras.append('    <h3 class="about-heading">%s</h3>\n'
+                               % pair(en[4:] if en.startswith("### ") else en,
+                                      ar[4:] if ar.startswith("### ") else ar))
+            continue
+        closer = en.startswith("> ") or ar.startswith("> ")
         if closer:
             en, ar = en[2:], ar[2:]
         about_paras.append('    <p class="%s">%s</p>\n'

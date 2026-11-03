@@ -142,6 +142,7 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 }
 .prose { font-size: clamp(1.05rem, 2vw, 1.4rem); max-width: 62ch; line-height: 1.6; }
 .about-close { font-style: italic; margin-top: 1.75rem; }
+.about-heading { font-family: "Cormorant Garamond", serif; font-size: 1.7rem; font-weight: 600; margin: 2.4rem 0 .6rem; }
 .about-ar {
   max-width: 62ch; margin: 2.5rem 0 0 auto; padding-top: 2rem;
   border-top: 1px solid var(--hairline);
