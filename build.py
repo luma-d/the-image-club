@@ -184,17 +184,20 @@ def main():
     footer = parse_md(CONTENT / "footer.md")
 
     # Nav: one label per line, fixed anchors in order.
-    if len(nav[0]) != len(nav[1]) != len(NAV_ANCHORS):
-        raise SystemExit("nav.md: expected 4 link labels per language")
+    if len(nav[0]) != len(nav[1]) or len(nav[0]) != len(NAV_ANCHORS):
+        print("warning: nav.md should have %d labels per language; publishing with what is there"
+              % len(NAV_ANCHORS))
     nav_links = "".join(
         '      <a href="%s">%s</a>\n' % (anchor, pair(en, ar))
-        for anchor, en, ar in zip(NAV_ANCHORS, nav[0], nav[1])
+        for anchor, en, ar in zip_longest(NAV_ANCHORS, nav[0], nav[1], fillvalue="")
     )
 
     # Hero: paragraph 1 = tagline, paragraph 2 = pill.
     hero_en, hero_ar = paragraphs(hero[0]), paragraphs(hero[1])
     if len(hero_en) < 2 or len(hero_ar) < 2:
-        raise SystemExit("hero.md: needs a tagline and a pill line")
+        print("warning: hero.md should have a tagline and a pill line per language")
+    hero_en += [""] * (2 - len(hero_en)) if len(hero_en) < 2 else []
+    hero_ar += [""] * (2 - len(hero_ar)) if len(hero_ar) < 2 else []
 
     # About: paragraphs; `> ` renders as the italic closer; `### ` as a heading.
     about_en, about_ar = paragraphs(about[0]), paragraphs(about[1])
@@ -215,33 +218,48 @@ def main():
         about_paras.append('    <p class="%s">%s</p>\n'
                           % ("prose about-close" if closer else "prose", pair(en, ar)))
 
-    # Workshops: intro paragraph, then exactly 3 `### Title` + body pairs.
+    # Workshops: intro paragraph, then `### Title` cards. A card body is
+    # optional; titles and bodies are matched by position in the file, so
+    # deleting a description never shifts text onto the wrong card.
     w_en, w_ar = paragraphs(workshops[0]), paragraphs(workshops[1])
-    titles_en = [p[4:] for p in w_en[1:] if p.startswith("### ")]
-    titles_ar = [p[4:] for p in w_ar[1:] if p.startswith("### ")]
-    bodies_en = [p for p in w_en[1:] if not p.startswith("### ")]
-    bodies_ar = [p for p in w_ar[1:] if not p.startswith("### ")]
-    if not (len(titles_en) == len(titles_ar) == len(bodies_en) == len(bodies_ar)):
-        raise SystemExit("workshops.md: expected 3 `### Title` + body pairs per language")
+    def cards_of(block):
+        out, cur = [], None
+        for p in block:
+            if p.startswith("### "):
+                cur = {"title": p[4:], "body": ""}
+                out.append(cur)
+            elif cur is not None and not cur["body"]:
+                cur["body"] = p
+        return out
+    w_cards_en, w_cards_ar = cards_of(w_en), cards_of(w_ar)
+    if len(w_cards_en) != len(w_cards_ar):
+        print("warning: workshops.md has %d en cards but %d ar cards — pairing what matches"
+              % (len(w_cards_en), len(w_cards_ar)))
     cards = []
-    for i, ((t_en, t_ar), (b_en, b_ar)) in enumerate(
-            zip(zip(titles_en, titles_ar), zip(bodies_en, bodies_ar)), start=1):
+    blank = {"title": "", "body": ""}
+    for i, (c_en, c_ar) in enumerate(
+            zip_longest(w_cards_en, w_cards_ar, fillvalue=blank), start=1):
+        body = ('        <p>%s</p>\n' % pair(c_en["body"], c_ar["body"])
+                if (c_en["body"] or c_ar["body"]) else "")
         cards.append(
             '      <article class="card" data-reveal>\n'
             '        <span class="card-num">%02d</span>\n'
-            '        <h3>%s</h3>\n'
-            '        <p>%s</p>\n'
-            '      </article>\n' % (i, pair(t_en, t_ar), pair(b_en, b_ar)))
+            '        <h3>%s</h3>\n%s'
+            '      </article>\n' % (i, pair(c_en["title"], c_ar["title"]), body))
 
     # Membership: paragraph 1 = heading, paragraph 2 = button label.
     m_en, m_ar = paragraphs(membership[0]), paragraphs(membership[1])
     if len(m_en) < 2 or len(m_ar) < 2:
-        raise SystemExit("membership.md: needs a heading and a button label")
+        print("warning: membership.md should have a heading and a button label per language")
+    m_en += [""] * max(0, 2 - len(m_en))
+    m_ar += [""] * max(0, 2 - len(m_ar))
 
     # Contact: paragraph 1 = bold location (email/Instagram are hardcoded).
     c_en, c_ar = paragraphs(contact[0]), paragraphs(contact[1])
     if not c_en or not c_ar:
-        raise SystemExit("contact.md: needs a location line")
+        print("warning: contact.md should have a location line per language")
+    c_en += [""] if not c_en else []
+    c_ar += [""] if not c_ar else []
 
     # Carousel: one slide per image in assets/gallery/, sorted by filename.
     # Optional content/gallery.md: one alt-text line per image, same order.
