@@ -35,7 +35,10 @@ html.lang-ar .soon-pill { letter-spacing: .05em; }
 html.lang-ar .btn .ar { letter-spacing: .1em; text-transform: none; }
 html.lang-ar .section-label .ar { letter-spacing: .12em; }
 html.lang-ar .prose { margin-left: auto; margin-right: 0; }
-html.lang-ar .section-label { flex-direction: row-reverse; }
+html.lang-ar .prose, html.lang-ar .about-heading, html.lang-ar .card h3,
+html.lang-ar .card p, html.lang-ar .muted-prose, html.lang-ar h2,
+html.lang-ar .tagline, html.lang-ar .footer-copy, html.lang-ar .soon-pill,
+html.lang-ar .section-label, html.lang-ar .btn { direction: rtl; }
 
 h1, h2, h3 { font-family: "Cormorant Garamond", serif; font-weight: 500; margin: 0; }
 a { color: inherit; }
