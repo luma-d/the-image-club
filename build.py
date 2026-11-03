@@ -183,7 +183,8 @@ def main():
     contact = parse_md(CONTENT / "contact.md")
     footer = parse_md(CONTENT / "footer.md")
 
-    # Nav: one label per line, fixed anchors in order.
+    # Nav: one label per line, fixed anchors in order. Blank lines ignored.
+    nav = [[l for l in block if l.strip()] for block in nav]
     if len(nav[0]) != len(nav[1]) or len(nav[0]) != len(NAV_ANCHORS):
         print("warning: nav.md should have %d labels per language; publishing with what is there"
               % len(NAV_ANCHORS))
