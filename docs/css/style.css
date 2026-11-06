@@ -149,6 +149,7 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
   color: inherit; margin-bottom: 1rem;
 }
 .prose { font-size: clamp(1.05rem, 2vw, 1.4rem); max-width: 62ch; line-height: 1.6; }
+.prose, .muted-prose, .card p { text-align: justify; }
 .about-close { font-style: italic; margin-top: 1.75rem; }
 .about-heading { font-family: "Cormorant Garamond", serif; font-size: 1.7rem; font-weight: 500; margin: 2.4rem 0 .6rem; }
 .about-ar {
