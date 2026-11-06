@@ -27,6 +27,8 @@ body {
 /* Language toggle: English by default, html.lang-ar shows .ar spans */
 .ar { display: none; }
 html.lang-ar .en { display: none; }
+html.lang-ar .en-only { display: none; }
+html:not(.lang-ar) .ar-only { display: none; }
 html.lang-ar .ar { display: inline; }
 html.lang-ar .ar { font-family: "Amiri", serif; font-weight: 400; }
 html.lang-ar .prose .ar { line-height: 2.1; }

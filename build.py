@@ -182,10 +182,24 @@ def parse_md(path: Path):
 
 
 def paragraphs(lines):
-    """Blank-line-separated paragraphs, each a single string."""
+    """Blank-line-separated paragraphs, each a single string.
+
+    A `### ` heading line is always its own paragraph even without a blank
+    line around it, and a `> ` line always starts a new paragraph — the
+    GitHub web editor makes it easy to delete those blank lines by accident.
+    """
     paras, cur = [], []
     for line in lines:
-        if line.strip() == "":
+        s = line.strip()
+        if s.startswith("### "):
+            if cur:
+                paras.append("\n".join(cur))
+                cur = []
+            paras.append(s)
+        elif s.startswith("> ") and cur:
+            paras.append("\n".join(cur))
+            cur = [line]
+        elif s == "":
             if cur:
                 paras.append("\n".join(cur))
                 cur = []
@@ -239,24 +253,49 @@ def main():
     hero_en += [""] * (2 - len(hero_en)) if len(hero_en) < 2 else []
     hero_ar += [""] * (2 - len(hero_ar)) if len(hero_ar) < 2 else []
 
-    # About: paragraphs; `> ` renders as the italic closer; `### ` as a heading.
-    about_en, about_ar = paragraphs(about[0]), paragraphs(about[1])
-    if len(about_en) != len(about_ar):
-        print("warning: about.md has %d en paragraphs but %d ar — pairing what "
-              "matches; extras will show in one language only"
-              % (len(about_en), len(about_ar)))
+    # About: `### ` headings split the text into sections; `> ` is the italic
+    # closer. Sections pair by order (heading with heading) and paragraphs
+    # pair within their section — merging or deleting paragraphs in one
+    # language never shifts text in the other.
+    def about_sections(paras):
+        sections, head, body, closer = [], "", [], ""
+        for p in paras:
+            if p.startswith("### "):
+                sections.append((head, body))
+                head, body = p[4:], []
+            elif p.startswith("> "):
+                closer = p[2:]
+            else:
+                body.append(p)
+        sections.append((head, body))
+        return sections, closer
+
+    a_sec_en, a_close_en = about_sections(paragraphs(about[0]))
+    a_sec_ar, a_close_ar = about_sections(paragraphs(about[1]))
+    if len(a_sec_en) != len(a_sec_ar):
+        print("warning: about.md has %d en sections but %d ar sections — "
+              "pairing what matches; extras show in one language only"
+              % (len(a_sec_en), len(a_sec_ar)))
+
+    def side(en, ar):
+        """Class that hides a paragraph in the language it has no text for."""
+        if en and not ar:
+            return " en-only"
+        if ar and not en:
+            return " ar-only"
+        return ""
+
     about_paras = []
-    for en, ar in zip_longest(about_en, about_ar, fillvalue=""):
-        if en.startswith("### ") or ar.startswith("### "):
-            about_paras.append('    <h3 class="about-heading">%s</h3>\n'
-                               % pair(en[4:] if en.startswith("### ") else en,
-                                      ar[4:] if ar.startswith("### ") else ar))
-            continue
-        closer = en.startswith("> ") or ar.startswith("> ")
-        if closer:
-            en, ar = en[2:], ar[2:]
-        about_paras.append('    <p class="%s">%s</p>\n'
-                          % ("prose about-close" if closer else "prose", pair(en, ar)))
+    for (h_en, b_en), (h_ar, b_ar) in zip_longest(a_sec_en, a_sec_ar, fillvalue=("", [])):
+        if h_en or h_ar:
+            about_paras.append('    <h3 class="about-heading%s">%s</h3>\n'
+                               % (side(h_en, h_ar), pair(h_en, h_ar)))
+        for en, ar in zip_longest(b_en, b_ar, fillvalue=""):
+            about_paras.append('    <p class="prose%s">%s</p>\n'
+                               % (side(en, ar), pair(en, ar)))
+    if a_close_en or a_close_ar:
+        about_paras.append('    <p class="prose about-close%s">%s</p>\n'
+                           % (side(a_close_en, a_close_ar), pair(a_close_en, a_close_ar)))
 
     # Workshops: intro paragraph, then `### Title` cards. A card body is
     # optional; titles and bodies are matched by position in the file, so
