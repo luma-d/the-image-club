@@ -17,18 +17,18 @@ body {
   background: radial-gradient(ellipse at 50% 0%, #1c1b18, #101010);
   background-attachment: fixed;
   color: var(--ink);
-  font-family: "Inter", system-ui, sans-serif;
-  font-weight: 400;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
-.arabic { font-family: "Amiri", "Amiri Fallback", serif; }
+.arabic { font-family: "Amiri", "Amiri Fallback", serif; font-weight: 400; }
 
 /* Language toggle: English by default, html.lang-ar shows .ar spans */
 .ar { display: none; }
 html.lang-ar .en { display: none; }
 html.lang-ar .ar { display: inline; }
-html.lang-ar .ar { font-family: "Amiri", serif; }
+html.lang-ar .ar { font-family: "Amiri", serif; font-weight: 400; }
 html.lang-ar .prose .ar { line-height: 2.1; }
 html.lang-ar .nav-links a .ar, html.lang-ar .lang-btn .ar { letter-spacing: 0; text-transform: none; }
 html.lang-ar .nav-links { direction: rtl; }
@@ -93,11 +93,11 @@ a { color: inherit; }
 .pin { fill: var(--red); }
 
 .nav-links { display: flex; align-items: center; gap: 1.6rem; }
-.nav-links a { font-family: "Inter", sans-serif; font-size: .9rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; }
+.nav-links a { font-family: "Cormorant Garamond", serif; font-size: .9rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; }
 .ig-link { display: inline-flex; opacity: .85; transition: opacity .15s; }
 .lang-btn {
   background: none; border: 1px solid var(--red); color: var(--red); cursor: pointer;
-  font-family: "Inter", sans-serif; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+  font-family: "Cormorant Garamond", serif; font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
   padding: .35rem .7rem;
 }
 .lang-btn:hover { border-color: var(--red); background: color-mix(in srgb, var(--red) 12%, transparent); }
@@ -133,22 +133,22 @@ a { color: inherit; }
 .logo-mark.hero-mark { width: min(42vmin, 200px); margin-bottom: 1.5rem; }
 h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 .arabic-lg { font-size: clamp(2rem, 4.5vw, 3.2rem); margin: -.3rem 0 1rem; font-weight: 700; }
-.tagline { font-family: "Inter", sans-serif; font-size: clamp(1rem, 1.5vw, 1.125rem); color: var(--mid); max-width: 40ch; margin: 0 auto 1.6rem; }
+.tagline { font-family: "Cormorant Garamond", serif; font-size: clamp(1rem, 1.5vw, 1.125rem); color: var(--mid); max-width: 40ch; margin: 0 auto 1.6rem; }
 .soon-pill {
   display: inline-block; border: 1px solid var(--red); padding: .35rem 1rem;
-  font-family: "Inter", sans-serif; font-size: .72rem; letter-spacing: .3em; text-transform: uppercase;
+  font-family: "Cormorant Garamond", serif; font-size: .72rem; letter-spacing: .3em; text-transform: uppercase;
   color: var(--red);
 }
 
 /* Sections */
 .block { padding: clamp(4rem, 10vh, 8rem) max(1.5rem, calc((100% - 1100px) / 2)); }
 .section-label {
-  font-family: "Inter", sans-serif; font-size: clamp(1.05rem, 2vw, 1.4rem); letter-spacing: .15em; text-transform: uppercase;
+  font-family: "Cormorant Garamond", serif; font-size: clamp(1.05rem, 2vw, 1.4rem); letter-spacing: .15em; text-transform: uppercase;
   color: inherit; margin-bottom: 1rem;
 }
 .prose { font-size: clamp(1.05rem, 2vw, 1.4rem); max-width: 62ch; line-height: 1.6; }
 .about-close { font-style: italic; margin-top: 1.75rem; }
-.about-heading { font-family: "Cormorant Garamond", serif; font-size: 1.7rem; font-weight: 600; margin: 2.4rem 0 .6rem; }
+.about-heading { font-family: "Cormorant Garamond", serif; font-size: 1.7rem; font-weight: 500; margin: 2.4rem 0 .6rem; }
 .about-ar {
   max-width: 62ch; margin: 2.5rem 0 0 auto; padding-top: 2rem;
   border-top: 1px solid var(--hairline);
@@ -170,7 +170,7 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
 .card { padding: 1.5rem; border: 1px solid var(--hairline); background: color-mix(in srgb, var(--paper) 70%, transparent); }
-.card-num { font-family: "Inter", sans-serif; font-size: .7rem; letter-spacing: .2em; color: var(--mid); }
+.card-num { font-family: "Cormorant Garamond", serif; font-size: .7rem; letter-spacing: .2em; color: var(--mid); }
 .card h3 { font-size: 1.4rem; margin: .6rem 0 .6rem; }
 .card p { font-size: .9rem; color: var(--mid); margin: 0; }
 @media (max-width: 720px) { .cards { grid-template-columns: 1fr; } }
@@ -200,7 +200,7 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 /* Membership CTA button */
 .btn {
   display: inline-block; margin-top: 2rem; padding: .9rem 2rem;
-  font-family: "Inter", sans-serif; font-size: .8rem; letter-spacing: .25em; text-transform: uppercase;
+  font-family: "Cormorant Garamond", serif; font-size: .8rem; letter-spacing: .25em; text-transform: uppercase;
   text-decoration: none; border: 1px solid var(--red); color: var(--red); cursor: pointer;
 }
 .btn-outline { background: transparent; }
