@@ -38,6 +38,7 @@ html.lang-ar .nav-links a { font-size: 1.05rem; }
 html.lang-ar .soon-pill { letter-spacing: .05em; }
 html.lang-ar .btn .ar { letter-spacing: .1em; text-transform: none; }
 html.lang-ar .section-label .ar { letter-spacing: 0; font-weight: 700; }
+html.lang-ar .section-label { font-size: clamp(1.25rem, 2.3vw, 1.6rem); }
 html.lang-ar .prose, html.lang-ar .about-heading, html.lang-ar .card h3,
 html.lang-ar .card p, html.lang-ar .muted-prose, html.lang-ar h2,
 html.lang-ar .tagline, html.lang-ar .footer-copy, html.lang-ar .soon-pill,
