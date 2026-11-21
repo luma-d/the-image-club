@@ -105,22 +105,18 @@ PAGE = '''<!DOCTYPE html>
   <section class="block invert" id="journal">
     <div class="section-inner">
       <p class="section-label">{SEC3}</p>
-      <h2>{JOURNAL_H2}</h2>
-      <p class="prose journal-body">{JOURNAL_BODY}</p>
-    </div>
+{JOURNAL_BODY}    </div>
   </section>
 
 
   <section class="block invert" id="membership">
     <p class="section-label">{SEC4}</p>
-    <h2>{MEMBERSHIP_H2}</h2>
 {MEMBERSHIP_BODY}    <a class="btn btn-outline" href="https://www.instagram.com/the.image.club" target="_blank" rel="noopener">{MEMBERSHIP_BTN}</a>
   </section>
 
 
   <section class="block" data-reveal id="contact">
     <p class="section-label">{SEC5}</p>
-    <h2>{CONTACT_H2}</h2>
 {CONTACT_BODY}    <p class="prose"><strong>{LOCATION}</strong></p>
     <p class="prose"><span class="ig-handle">@the.image.club</span> &nbsp;·&nbsp; <a class="mail" href="mailto:hi@theimageclub.org">hi@theimageclub.org</a></p>
   </section>
@@ -345,38 +341,24 @@ def main():
             '        <h3>%s</h3>\n%s'
             '      </article>\n' % (i, pair(c_en["title"], c_ar["title"]), body))
 
-    # Journal: paragraph 1 = heading, paragraph 2 = body.
+    # Journal / Membership / Contact: every paragraph in the file is body
+    # text; the section title comes from nav.md. Button label and location
+    # line are fixed in the template.
+    def body_of(block_en, block_ar, name):
+        if not block_en and not block_ar:
+            print("warning: %s.md has no text" % name)
+        return "".join(
+            '    <p class="prose">%s</p>\n' % pair(en, ar)
+            for en, ar in zip_longest(block_en, block_ar, fillvalue=""))
+
     j_en, j_ar = paragraphs(journal[0]), paragraphs(journal[1])
-    if len(j_en) < 2 or len(j_ar) < 2:
-        print("warning: journal.md should have a heading and a body per language")
-    j_en += [""] * max(0, 2 - len(j_en))
-    j_ar += [""] * max(0, 2 - len(j_ar))
+    journal_body = body_of(j_en, j_ar, "journal")
 
-    # Membership: paragraph 1 = heading, paragraphs 2..n = body. The
-    # Instagram button label is fixed in the template.
     m_en, m_ar = paragraphs(membership[0]), paragraphs(membership[1])
-    if not m_en or not m_ar:
-        print("warning: membership.md should have a heading per language")
-    m_en += [""] * max(0, 1 - len(m_en))
-    m_ar += [""] * max(0, 1 - len(m_ar))
-    if not m_en[1:] and not m_ar[1:]:
-        print("warning: membership.md has no body paragraphs")
-    membership_body = "".join(
-        '    <p class="prose">%s</p>\n' % pair(en, ar)
-        for en, ar in zip_longest(m_en[1:], m_ar[1:], fillvalue=""))
+    membership_body = body_of(m_en, m_ar, "membership")
 
-    # Contact: paragraph 1 = heading, paragraphs 2..n = body. The location
-    # line is fixed in the template.
     c_en, c_ar = paragraphs(contact[0]), paragraphs(contact[1])
-    if not c_en or not c_ar:
-        print("warning: contact.md should have a heading per language")
-    c_en += [""] * max(0, 1 - len(c_en))
-    c_ar += [""] * max(0, 1 - len(c_ar))
-    if not c_en[1:] and not c_ar[1:]:
-        print("warning: contact.md has no body paragraphs")
-    contact_body = "".join(
-        '    <p class="prose">%s</p>\n' % pair(en, ar)
-        for en, ar in zip_longest(c_en[1:], c_ar[1:], fillvalue=""))
+    contact_body = body_of(c_en, c_ar, "contact")
 
     # Carousel: one slide per image in assets/gallery/, sorted by filename.
     # Optional content/gallery.md: one alt-text line per image, same order.
@@ -409,12 +391,9 @@ def main():
         WORKSHOPS_INTRO=pair(w_en[0], w_ar[0]),
         CARDS="".join(cards),
         CAROUSEL=carousel,
-        JOURNAL_H2=pair(j_en[0], j_ar[0]),
-        JOURNAL_BODY=pair(j_en[1], j_ar[1]),
-        MEMBERSHIP_H2=pair(m_en[0], m_ar[0]),
+        JOURNAL_BODY=journal_body,
         MEMBERSHIP_BODY=membership_body,
         MEMBERSHIP_BTN=pair("Follow us on Instagram", "تابعونا على إنستغرام"),
-        CONTACT_H2=pair(c_en[0], c_ar[0]),
         CONTACT_BODY=contact_body,
         LOCATION=pair("Damascus, Syria", "دمشق، سوريا"),
         FOOTER_EN=footer_en,

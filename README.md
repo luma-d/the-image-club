@@ -12,9 +12,9 @@ refreshes the copied `css/`, `js/`, `favicon.svg` and `assets/` inside
 | `content/hero.md` | paragraph 1 = hero tagline, paragraph 2 = pill text |
 | `content/about.md` | about paragraphs; a line starting `> ` becomes the italic closer |
 | `content/workshops.md` | paragraph 1 = intro; then one `### Card title` per workshop card, optionally followed by a description paragraph (cards numbered 01–03 automatically) |
-| `content/journal.md` | paragraph 1 = heading, paragraph 2 = body |
-| `content/membership.md` | paragraph 1 = heading, paragraphs 2..n = body (the Instagram button label is fixed in `build.py`) |
-| `content/contact.md` | paragraph 1 = heading, paragraphs 2..n = body (the location line, email and Instagram handle are fixed in `build.py`) |
+| `content/journal.md` | body paragraphs (the section title comes from `nav.md`) |
+| `content/membership.md` | body paragraphs (the section title comes from `nav.md`; the Instagram button label is fixed in `build.py`) |
+| `content/contact.md` | body paragraphs (the section title comes from `nav.md`; the location line, email and Instagram handle are fixed in `build.py`) |
 | `content/footer.md` | footer lines, one per line; joined with `<br>` in the output |
 | `content/nav.md` | nav link labels, one per line, in order: About, Workshops, Community Journal, Membership, Contact |
 
