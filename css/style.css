@@ -37,7 +37,7 @@ html.lang-ar .nav-links { direction: rtl; }
 html.lang-ar .nav-links a { font-size: 1.05rem; }
 html.lang-ar .soon-pill { letter-spacing: .05em; }
 html.lang-ar .btn .ar { letter-spacing: .1em; text-transform: none; }
-html.lang-ar .section-label .ar { letter-spacing: .12em; }
+html.lang-ar .section-label .ar { letter-spacing: 0; font-weight: 700; }
 html.lang-ar .prose, html.lang-ar .about-heading, html.lang-ar .card h3,
 html.lang-ar .card p, html.lang-ar .muted-prose, html.lang-ar h2,
 html.lang-ar .tagline, html.lang-ar .footer-copy, html.lang-ar .soon-pill,
@@ -148,7 +148,7 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 /* Sections */
 .block { padding: clamp(4rem, 10vh, 8rem) max(1.5rem, calc((100% - 1100px) / 2)); }
 .section-label {
-  font-family: "Cormorant Garamond", serif; font-size: clamp(1.05rem, 2vw, 1.4rem); letter-spacing: .15em; text-transform: uppercase;
+  font-family: "Cormorant Garamond", serif; font-size: clamp(1.05rem, 2vw, 1.4rem); letter-spacing: .15em; text-transform: uppercase; font-weight: 700;
   color: inherit; margin-bottom: 1rem;
 }
 .prose { font-size: clamp(1.05rem, 2vw, 1.4rem); max-width: 62ch; line-height: 1.6; margin-left: auto; margin-right: auto; }
