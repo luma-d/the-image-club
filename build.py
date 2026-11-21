@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent
 CONTENT = ROOT / "content"
 DOCS = ROOT / "docs"
 
-NAV_ANCHORS = ["#about", "#workshops", "#membership", "#contact"]
+NAV_ANCHORS = ["#about", "#workshops", "#journal", "#membership", "#contact"]
 
 PAGE = '''<!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -102,16 +102,26 @@ PAGE = '''<!DOCTYPE html>
   </section>
 
 
+  <section class="block invert" id="journal">
+    <div class="section-inner">
+      <p class="section-label">{SEC3}</p>
+      <h2>{JOURNAL_H2}</h2>
+      <p class="prose journal-body">{JOURNAL_BODY}</p>
+    </div>
+  </section>
+
+
   <section class="block invert" id="membership">
-    <p class="section-label">{SEC3}</p>
+    <p class="section-label">{SEC4}</p>
     <h2>{MEMBERSHIP_H2}</h2>
-    <a class="btn btn-outline" href="https://www.instagram.com/the.image.club" target="_blank" rel="noopener">{MEMBERSHIP_BTN}</a>
+{MEMBERSHIP_BODY}    <a class="btn btn-outline" href="https://www.instagram.com/the.image.club" target="_blank" rel="noopener">{MEMBERSHIP_BTN}</a>
   </section>
 
 
   <section class="block" data-reveal id="contact">
-    <p class="section-label">{SEC4}</p>
-    <p class="prose"><strong>{LOCATION}</strong></p>
+    <p class="section-label">{SEC5}</p>
+    <h2>{CONTACT_H2}</h2>
+{CONTACT_BODY}    <p class="prose"><strong>{LOCATION}</strong></p>
     <p class="prose"><span class="ig-handle">@the.image.club</span> &nbsp;·&nbsp; <a class="mail" href="mailto:hi@theimageclub.org">hi@theimageclub.org</a></p>
   </section>
 </main>
@@ -222,6 +232,7 @@ def main():
     hero = parse_md(CONTENT / "hero.md")
     about = parse_md(CONTENT / "about.md")
     workshops = parse_md(CONTENT / "workshops.md")
+    journal = parse_md(CONTENT / "journal.md")
     membership = parse_md(CONTENT / "membership.md")
     contact = parse_md(CONTENT / "contact.md")
     footer = parse_md(CONTENT / "footer.md")
@@ -238,7 +249,7 @@ def main():
 
     # Section labels ("01 — About") reuse the nav.md labels, so editing a
     # label in nav.md updates both the top bar and the section heading.
-    AR_NUMS = ("٠١", "٠٢", "٠٣", "٠٤")
+    AR_NUMS = ("٠١", "٠٢", "٠٣", "٠٤", "٠٥", "٠٦")
     sec_labels = {
         i: ('<span class="en">%02d — %s</span>'
             '<span class="ar" lang="ar" dir="rtl">%s — %s</span>'
@@ -297,6 +308,15 @@ def main():
         about_paras.append('    <p class="prose about-close%s">%s</p>\n'
                            % (side(a_close_en, a_close_ar), pair(a_close_en, a_close_ar)))
 
+    # Founder photo right after the first About prose paragraph (if any).
+    figure = ('    <figure class="about-figure">\n'
+              '      <img src="assets/about/founder.jpg" alt="Luma Darwish, founder of The Image Club" loading="lazy" />\n'
+              '    </figure>\n')
+    for i, para in enumerate(about_paras):
+        if para.startswith('    <p class="prose'):
+            about_paras.insert(i + 1, figure)
+            break
+
     # Workshops: intro paragraph, then `### Title` cards. A card body is
     # optional; titles and bodies are matched by position in the file, so
     # deleting a description never shifts text onto the wrong card.
@@ -326,19 +346,38 @@ def main():
             '        <h3>%s</h3>\n%s'
             '      </article>\n' % (i, pair(c_en["title"], c_ar["title"]), body))
 
-    # Membership: paragraph 1 = heading, paragraph 2 = button label.
-    m_en, m_ar = paragraphs(membership[0]), paragraphs(membership[1])
-    if len(m_en) < 2 or len(m_ar) < 2:
-        print("warning: membership.md should have a heading and a button label per language")
-    m_en += [""] * max(0, 2 - len(m_en))
-    m_ar += [""] * max(0, 2 - len(m_ar))
+    # Journal: paragraph 1 = heading, paragraph 2 = body.
+    j_en, j_ar = paragraphs(journal[0]), paragraphs(journal[1])
+    if len(j_en) < 2 or len(j_ar) < 2:
+        print("warning: journal.md should have a heading and a body per language")
+    j_en += [""] * max(0, 2 - len(j_en))
+    j_ar += [""] * max(0, 2 - len(j_ar))
 
-    # Contact: paragraph 1 = bold location (email/Instagram are hardcoded).
+    # Membership: paragraph 1 = heading, paragraphs 2..n = body. The
+    # Instagram button label is fixed in the template.
+    m_en, m_ar = paragraphs(membership[0]), paragraphs(membership[1])
+    if not m_en or not m_ar:
+        print("warning: membership.md should have a heading per language")
+    m_en += [""] * max(0, 1 - len(m_en))
+    m_ar += [""] * max(0, 1 - len(m_ar))
+    if not m_en[1:] and not m_ar[1:]:
+        print("warning: membership.md has no body paragraphs")
+    membership_body = "".join(
+        '    <p class="prose">%s</p>\n' % pair(en, ar)
+        for en, ar in zip_longest(m_en[1:], m_ar[1:], fillvalue=""))
+
+    # Contact: paragraph 1 = heading, paragraphs 2..n = body. The location
+    # line is fixed in the template.
     c_en, c_ar = paragraphs(contact[0]), paragraphs(contact[1])
     if not c_en or not c_ar:
-        print("warning: contact.md should have a location line per language")
-    c_en += [""] if not c_en else []
-    c_ar += [""] if not c_ar else []
+        print("warning: contact.md should have a heading per language")
+    c_en += [""] * max(0, 1 - len(c_en))
+    c_ar += [""] * max(0, 1 - len(c_ar))
+    if not c_en[1:] and not c_ar[1:]:
+        print("warning: contact.md has no body paragraphs")
+    contact_body = "".join(
+        '    <p class="prose">%s</p>\n' % pair(en, ar)
+        for en, ar in zip_longest(c_en[1:], c_ar[1:], fillvalue=""))
 
     # Carousel: one slide per image in assets/gallery/, sorted by filename.
     # Optional content/gallery.md: one alt-text line per image, same order.
@@ -364,15 +403,21 @@ def main():
         NAV_LINKS=nav_links,
         SEC1=sec_labels.get(1, ""), SEC2=sec_labels.get(2, ""),
         SEC3=sec_labels.get(3, ""), SEC4=sec_labels.get(4, ""),
+        SEC5=sec_labels.get(5, ""),
         TAGLINE=pair(hero_en[0], hero_ar[0]),
         PILL=pair(hero_en[1], hero_ar[1]),
         ABOUT_PARAS="".join(about_paras),
         WORKSHOPS_INTRO=pair(w_en[0], w_ar[0]),
         CARDS="".join(cards),
         CAROUSEL=carousel,
+        JOURNAL_H2=pair(j_en[0], j_ar[0]),
+        JOURNAL_BODY=pair(j_en[1], j_ar[1]),
         MEMBERSHIP_H2=pair(m_en[0], m_ar[0]),
-        MEMBERSHIP_BTN=pair(m_en[1], m_ar[1]),
-        LOCATION=pair(c_en[0], c_ar[0]),
+        MEMBERSHIP_BODY=membership_body,
+        MEMBERSHIP_BTN=pair("Follow us on Instagram", "تابعونا على إنستغرام"),
+        CONTACT_H2=pair(c_en[0], c_ar[0]),
+        CONTACT_BODY=contact_body,
+        LOCATION=pair("Damascus, Syria", "دمشق، سوريا"),
         FOOTER_EN=footer_en,
         FOOTER_AR=footer_ar,
     )

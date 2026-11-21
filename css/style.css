@@ -37,13 +37,14 @@ html.lang-ar .nav-links { direction: rtl; }
 html.lang-ar .soon-pill { letter-spacing: .05em; }
 html.lang-ar .btn .ar { letter-spacing: .1em; text-transform: none; }
 html.lang-ar .section-label .ar { letter-spacing: .12em; }
-html.lang-ar .prose { margin-left: auto; margin-right: 0; }
 html.lang-ar .prose, html.lang-ar .about-heading, html.lang-ar .card h3,
 html.lang-ar .card p, html.lang-ar .muted-prose, html.lang-ar h2,
 html.lang-ar .tagline, html.lang-ar .footer-copy, html.lang-ar .soon-pill,
 html.lang-ar .section-label, html.lang-ar .btn { direction: rtl; }
-html.lang-ar #membership { text-align: right; }
 html.lang-ar .car-track { direction: rtl; }
+html.lang-ar h2 { font-size: clamp(2.4rem, 5.5vw, 3.6rem); }
+html.lang-ar .about-heading { font-size: 2rem; }
+html.lang-ar .card h3 { font-size: 1.6rem; }
 
 h1, h2, h3 { font-family: "Cormorant Garamond", serif; font-weight: 500; margin: 0; }
 a { color: inherit; }
@@ -148,9 +149,11 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
   font-family: "Cormorant Garamond", serif; font-size: clamp(1.05rem, 2vw, 1.4rem); letter-spacing: .15em; text-transform: uppercase;
   color: inherit; margin-bottom: 1rem;
 }
-.prose { font-size: clamp(1.05rem, 2vw, 1.4rem); max-width: 62ch; line-height: 1.6; }
-.prose, .muted-prose, .card p { text-align: justify; }
+.prose { font-size: clamp(1.05rem, 2vw, 1.4rem); max-width: 62ch; line-height: 1.6; margin-left: auto; margin-right: auto; }
+.prose, .muted-prose, .card p { text-align: center; }
 .about-close { font-style: italic; margin-top: 1.75rem; }
+.about-figure { margin: 2.2rem auto; max-width: 560px; }
+.about-figure img { width: 100%; display: block; }
 .about-heading { font-family: "Cormorant Garamond", serif; font-size: 1.7rem; font-weight: 500; margin: 2.4rem 0 .6rem; }
 .about-ar {
   max-width: 62ch; margin: 2.5rem 0 0 auto; padding-top: 2rem;
@@ -208,6 +211,9 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 }
 .btn-outline { background: transparent; }
 .btn-outline:hover { background: color-mix(in srgb, var(--red) 12%, transparent); }
+
+#membership { text-align: center; }
+#contact { text-align: center; }
 
 /* Footer */
 .site-footer {
