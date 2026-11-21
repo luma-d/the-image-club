@@ -1,9 +1,30 @@
 # The Image Club — editing & build
 
 The website is generated from plain-markdown files in `content/`. Edit those
-files, then run `python3 build.py` — it rewrites `docs/index.html` and
-refreshes the copied `css/`, `js/`, `favicon.svg` and `assets/` inside
-`docs/`. **`docs/` is what GitHub Pages serves** (from the `main` branch).
+files, then run `python3 build.py` — it rewrites `docs/` (one flat page per
+section: `index.html`, `about.html`, `workshops.html`, `journal.html`,
+`membership.html`, `contact.html`) and refreshes the copied `css/`, `js/`,
+`favicon.svg`, `assets/` and `CNAME` inside `docs/`. **`docs/` is what GitHub
+Pages serves** (from the `main` branch).
+
+## Pages
+
+The site is multi-page. The nav (and each page's section label) comes from
+`content/nav.md`, one label per line, in order — it drives both the top bar
+and the heading on each page:
+
+| Page | Content file(s) |
+|---|---|
+| `index.html` | `hero.md` (tagline + pill) + footer |
+| `about.html` | `about.md` (+ founder figure) |
+| `workshops.html` | `workshops.md` (intro, cards, carousel) |
+| `journal.html` | `journal.md` |
+| `membership.html` | `membership.md` (+ Instagram button) |
+| `contact.html` | `contact.md` (+ location/email lines) |
+
+`nav.md` still drives the nav and the section labels; each page's heading is
+the matching nav label. The hero pill links to `membership.html`; the brand
+links to `index.html`.
 
 ## Content files
 
@@ -54,7 +75,7 @@ python3 build.py     # rebuild docs/ from content/ (prints every file written)
 ## ملاحظة بالعربية
 
 تحرير النصوص يتم داخل ملفات `content/` كنصٍّ عادي، ثم يُشغَّل
-`python3 build.py` لإعادة بناء الصفحة النهائية داخل مجلد `docs/` — وهو
+`python3 build.py` لإعادة بناء الصفحات النهائية داخل مجلد `docs/` — وهو
 المجلّد الذي ينشره GitHub Pages من فرع `main`.
 
 ## Editing the text (no technical skills needed)

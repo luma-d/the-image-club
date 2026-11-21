@@ -6,8 +6,10 @@ Pure Python 3 standard library, no pip dependencies.
 Each content file has two blocks, `## en` and `## ar`. This script
 wraps every line/paragraph in the site's span structure
 (<span class="en"> / <span class="ar" lang="ar" dir="rtl">),
-escapes the text for HTML, and regenerates docs/index.html from a
-template. It also copies css/, js/, favicon.svg and assets/ into docs/.
+escapes the text for HTML, and regenerates one page per section in
+docs/ (index.html, about.html, workshops.html, journal.html,
+membership.html, contact.html) from a shared base template. It also
+copies css/, js/, favicon.svg and assets/ into docs/.
 Idempotent: every run rebuilds docs/ from scratch.
 """
 
@@ -20,15 +22,15 @@ ROOT = Path(__file__).resolve().parent
 CONTENT = ROOT / "content"
 DOCS = ROOT / "docs"
 
-NAV_ANCHORS = ["#about", "#workshops", "#journal", "#membership", "#contact"]
+NAV_LINKS = ["about.html", "workshops.html", "journal.html", "membership.html", "contact.html"]
 
-PAGE = '''<!DOCTYPE html>
+BASE = '''<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="The Image Club — a new home for photography coming to Damascus. Film developing, cyanotype and hands-on workshops; founded by Luma Darwish." />
-<title>The Image Club — نادي الصورة | Damascus</title>
+<title>{TITLE}</title>
 <meta name="theme-color" content="#141413" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,7 +44,7 @@ PAGE = '''<!DOCTYPE html>
 
 <header class="site-nav">
   <div class="nav-inner">
-    <a class="brand" href="#top" aria-label="The Image Club — نادي الصورة">
+    <a class="brand" href="index.html" aria-label="The Image Club — نادي الصورة">
       <svg class="logo-mark" viewBox="0 0 240 160" role="img" aria-label="The Image Club logo mark">
         <path d="M8 36 C 60 46, 180 46, 232 30" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
         <rect x="50" y="46" width="62" height="106" fill="none" stroke="currentColor" stroke-width="4"/>
@@ -66,60 +68,7 @@ PAGE = '''<!DOCTYPE html>
 </header>
 
 <main id="main">
-  <section class="hero" id="top">
-    <svg class="logo-mark hero-mark" viewBox="0 0 240 160" role="img" aria-label="The Image Club logo mark">
-      <path d="M8 36 C 60 46, 180 46, 232 30" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
-      <rect x="50" y="46" width="62" height="106" fill="none" stroke="currentColor" stroke-width="4"/>
-      <rect x="124" y="46" width="64" height="102" fill="currentColor"/>
-      <rect x="73" y="16" width="16" height="44" rx="2" class="pin"/>
-      <rect x="148" y="16" width="16" height="44" rx="2" class="pin"/>
-    </svg>
-    <h1>The Image Club</h1>
-    <p class="arabic arabic-lg" lang="ar" dir="rtl">نادي الصورة</p>
-    <p class="tagline">{TAGLINE}</p>
-    <span class="soon-pill">{PILL}</span>
-  </section>
-
-
-  <section class="block invert" data-reveal id="about">
-    <p class="section-label">{SEC1}</p>
-{ABOUT_PARAS}  </section>
-
-
-  <section class="block" data-reveal id="workshops">
-    <p class="section-label">{SEC2}</p>
-    <p class="prose muted-prose">{WORKSHOPS_INTRO}</p>
-    <div class="cards">
-{CARDS}    </div>
-    <div class="carousel" aria-label="Photos from our first workshops">
-      <div class="car-track">
-{CAROUSEL}      </div>
-      <div class="car-controls">
-        <button class="car-btn car-prev" aria-label="Previous photos">←</button>
-        <button class="car-btn car-next" aria-label="Next photos">→</button>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="block invert" id="journal">
-    <div class="section-inner">
-      <p class="section-label">{SEC3}</p>
-{JOURNAL_BODY}    </div>
-  </section>
-
-
-  <section class="block invert" id="membership">
-    <p class="section-label">{SEC4}</p>
-{MEMBERSHIP_BODY}    <a class="btn btn-outline" href="https://www.instagram.com/the.image.club" target="_blank" rel="noopener">{MEMBERSHIP_BTN}</a>
-  </section>
-
-
-  <section class="block" data-reveal id="contact">
-    <p class="section-label">{SEC5}</p>
-{CONTACT_BODY}    <p class="prose"><strong>{LOCATION}</strong></p>
-    <p class="prose"><span class="ig-handle">@the.image.club</span> &nbsp;·&nbsp; <a class="mail" href="mailto:hi@theimageclub.org">hi@theimageclub.org</a></p>
-  </section>
+{MAIN}
 </main>
 
 
@@ -141,6 +90,62 @@ PAGE = '''<!DOCTYPE html>
 <script src="js/main.js"></script>
 </body>
 </html>
+'''
+
+INDEX_MAIN = '''  <section class="hero" id="top">
+    <svg class="logo-mark hero-mark" viewBox="0 0 240 160" role="img" aria-label="The Image Club logo mark">
+      <path d="M8 36 C 60 46, 180 46, 232 30" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+      <rect x="50" y="46" width="62" height="106" fill="none" stroke="currentColor" stroke-width="4"/>
+      <rect x="124" y="46" width="64" height="102" fill="currentColor"/>
+      <rect x="73" y="16" width="16" height="44" rx="2" class="pin"/>
+      <rect x="148" y="16" width="16" height="44" rx="2" class="pin"/>
+    </svg>
+    <h1>The Image Club</h1>
+    <p class="arabic arabic-lg" lang="ar" dir="rtl">نادي الصورة</p>
+    <p class="tagline">{TAGLINE}</p>
+    <a class="soon-pill" href="membership.html">{PILL}</a>
+  </section>
+'''
+
+ABOUT_MAIN = '''  <section class="block invert" data-reveal id="about">
+    <p class="section-label">{SEC1}</p>
+{ABOUT_PARAS}  </section>
+'''
+
+WORKSHOPS_MAIN = '''  <section class="block" data-reveal id="workshops">
+    <p class="section-label">{SEC2}</p>
+    <p class="prose muted-prose">{WORKSHOPS_INTRO}</p>
+    <div class="cards">
+{CARDS}    </div>
+    <div class="carousel" aria-label="Photos from our first workshops">
+      <div class="car-track">
+{CAROUSEL}      </div>
+      <div class="car-controls">
+        <button class="car-btn car-prev" aria-label="Previous photos">←</button>
+        <button class="car-btn car-next" aria-label="Next photos">→</button>
+      </div>
+    </div>
+  </section>
+'''
+
+JOURNAL_MAIN = '''  <section class="block invert" id="journal">
+    <div class="section-inner">
+      <p class="section-label">{SEC3}</p>
+{JOURNAL_BODY}    </div>
+  </section>
+'''
+
+MEMBERSHIP_MAIN = '''  <section class="block invert" id="membership">
+    <p class="section-label">{SEC4}</p>
+{MEMBERSHIP_BODY}    <a class="btn btn-outline" href="https://www.instagram.com/the.image.club" target="_blank" rel="noopener">{MEMBERSHIP_BTN}</a>
+  </section>
+'''
+
+CONTACT_MAIN = '''  <section class="block" data-reveal id="contact">
+    <p class="section-label">{SEC5}</p>
+{CONTACT_BODY}    <p class="prose"><strong>{LOCATION}</strong></p>
+    <p class="prose"><span class="ig-handle">@the.image.club</span> &nbsp;·&nbsp; <a class="mail" href="mailto:hi@theimageclub.org">hi@theimageclub.org</a></p>
+  </section>
 '''
 
 
@@ -223,6 +228,13 @@ def pair(en, ar):
             % (html.escape(en), html.escape(ar)))
 
 
+def sub(template, **values):
+    """Replace {KEY} placeholders without a format pass (content may contain braces)."""
+    for key, value in values.items():
+        template = template.replace("{" + key + "}", value)
+    return template
+
+
 def main():
     nav = parse_md(CONTENT / "nav.md")
     hero = parse_md(CONTENT / "hero.md")
@@ -233,14 +245,14 @@ def main():
     contact = parse_md(CONTENT / "contact.md")
     footer = parse_md(CONTENT / "footer.md")
 
-    # Nav: one label per line, fixed anchors in order. Blank lines ignored.
+    # Nav: one label per line, fixed page hrefs in order. Blank lines ignored.
     nav = [[l for l in block if l.strip()] for block in nav]
-    if len(nav[0]) != len(nav[1]) or len(nav[0]) != len(NAV_ANCHORS):
+    if len(nav[0]) != len(nav[1]) or len(nav[0]) != len(NAV_LINKS):
         print("warning: nav.md should have %d labels per language; publishing with what is there"
-              % len(NAV_ANCHORS))
+              % len(NAV_LINKS))
     nav_links = "".join(
-        '      <a href="%s">%s</a>\n' % (anchor, pair(en, ar))
-        for anchor, en, ar in zip_longest(NAV_ANCHORS, nav[0], nav[1], fillvalue="")
+        '      <a href="%s">%s</a>\n' % (href, pair(en, ar))
+        for href, en, ar in zip_longest(NAV_LINKS, nav[0], nav[1], fillvalue="")
     )
 
     # Section labels reuse the nav.md labels, so editing a
@@ -380,33 +392,61 @@ def main():
     footer_en = "<br />".join(html.escape(l) for l in footer[0] if l.strip())
     footer_ar = "<br />".join(html.escape(l) for l in footer[1] if l.strip())
 
-    page = PAGE.format(
-        NAV_LINKS=nav_links,
-        SEC1=sec_labels.get(1, ""), SEC2=sec_labels.get(2, ""),
-        SEC3=sec_labels.get(3, ""), SEC4=sec_labels.get(4, ""),
-        SEC5=sec_labels.get(5, ""),
-        TAGLINE=pair(hero_en[0], hero_ar[0]),
-        PILL=pair(hero_en[1], hero_ar[1]),
-        ABOUT_PARAS="".join(about_paras),
-        WORKSHOPS_INTRO=pair(w_en[0], w_ar[0]),
-        CARDS="".join(cards),
-        CAROUSEL=carousel,
-        JOURNAL_BODY=journal_body,
-        MEMBERSHIP_BODY=membership_body,
-        MEMBERSHIP_BTN=pair("Follow us on Instagram", "تابعونا على إنستغرام"),
-        CONTACT_BODY=contact_body,
-        LOCATION=pair("Damascus, Syria", "دمشق، سوريا"),
-        FOOTER_EN=footer_en,
-        FOOTER_AR=footer_ar,
-    )
+    pages = {
+        "index.html": (
+            "The Image Club — نادي الصورة",
+            INDEX_MAIN,
+            {"TAGLINE": pair(hero_en[0], hero_ar[0]),
+             "PILL": pair(hero_en[1], hero_ar[1])},
+        ),
+        "about.html": (
+            "About — The Image Club",
+            ABOUT_MAIN,
+            {"SEC1": sec_labels.get(1, ""),
+             "ABOUT_PARAS": "".join(about_paras)},
+        ),
+        "workshops.html": (
+            "Workshops — The Image Club",
+            WORKSHOPS_MAIN,
+            {"SEC2": sec_labels.get(2, ""),
+             "WORKSHOPS_INTRO": pair(w_en[0] if w_en else "", w_ar[0] if w_ar else ""),
+             "CARDS": "".join(cards),
+             "CAROUSEL": carousel},
+        ),
+        "journal.html": (
+            "Journal — The Image Club",
+            JOURNAL_MAIN,
+            {"SEC3": sec_labels.get(3, ""),
+             "JOURNAL_BODY": journal_body},
+        ),
+        "membership.html": (
+            "Membership — The Image Club",
+            MEMBERSHIP_MAIN,
+            {"SEC4": sec_labels.get(4, ""),
+             "MEMBERSHIP_BODY": membership_body,
+             "MEMBERSHIP_BTN": pair("Follow us on Instagram", "تابعونا على إنستغرام")},
+        ),
+        "contact.html": (
+            "Contact — The Image Club",
+            CONTACT_MAIN,
+            {"SEC5": sec_labels.get(5, ""),
+             "CONTACT_BODY": contact_body,
+             "LOCATION": pair("Damascus, Syria", "دمشق، سوريا")},
+        ),
+    }
 
     # Rebuild docs/ from scratch (idempotent).
     if DOCS.exists():
         shutil.rmtree(DOCS)
     DOCS.mkdir(parents=True)
-    (DOCS / "index.html").write_text(page, encoding="utf-8")
 
-    written = [DOCS / "index.html"]
+    written = []
+    for name, (title, fragment, values) in pages.items():
+        doc = sub(BASE, TITLE=title, NAV_LINKS=nav_links,
+                  MAIN=sub(fragment, **values),
+                  FOOTER_EN=footer_en, FOOTER_AR=footer_ar)
+        (DOCS / name).write_text(doc, encoding="utf-8")
+        written.append(DOCS / name)
 
     def copy_tree(src: Path, dst: Path):
         for p in sorted(src.rglob("*")):
@@ -425,6 +465,7 @@ def main():
     written.append(DOCS / "favicon.svg")
     copy_tree(ROOT / "assets", DOCS / "assets")
     (DOCS / "CNAME").write_text("theimageclub.org\n", encoding="utf-8")
+    written.append(DOCS / "CNAME")
 
     for d in sorted(written):
         print("wrote", d.relative_to(ROOT))
