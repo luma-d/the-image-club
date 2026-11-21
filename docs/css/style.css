@@ -34,6 +34,7 @@ html.lang-ar .ar { font-family: "Amiri", serif; font-weight: 400; }
 html.lang-ar .prose .ar { line-height: 2.1; }
 html.lang-ar .nav-links a .ar, html.lang-ar .lang-btn .ar { letter-spacing: 0; text-transform: none; }
 html.lang-ar .nav-links { direction: rtl; }
+html.lang-ar .nav-links a { font-size: 1.05rem; }
 html.lang-ar .soon-pill { letter-spacing: .05em; }
 html.lang-ar .btn .ar { letter-spacing: .1em; text-transform: none; }
 html.lang-ar .section-label .ar { letter-spacing: .12em; }
@@ -48,6 +49,7 @@ html.lang-ar .about-heading { font-size: 2rem; }
 html.lang-ar .card h3 { font-size: 1.6rem; }
 
 h1, h2, h3 { font-family: "Cormorant Garamond", serif; font-weight: 500; margin: 0; }
+h2 { font-weight: 700; }
 a { color: inherit; }
 
 :focus-visible {
@@ -137,7 +139,7 @@ a { color: inherit; }
 .logo-mark.hero-mark { width: min(42vmin, 200px); margin-bottom: 1.5rem; }
 h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 .arabic-lg { font-size: clamp(2rem, 4.5vw, 3.2rem); margin: -.3rem 0 1rem; font-weight: 700; }
-.tagline { font-family: "Cormorant Garamond", serif; font-size: clamp(1rem, 1.5vw, 1.125rem); color: var(--mid); max-width: 40ch; margin: 0 auto 1.6rem; }
+.tagline { font-family: "Cormorant Garamond", serif; font-size: clamp(1.25rem, 2vw, 1.6rem); color: var(--mid); max-width: 40ch; margin: 0 auto 1.6rem; }
 .soon-pill {
   display: inline-block; border: 1px solid var(--red); padding: .35rem 1rem;
   font-family: "Cormorant Garamond", serif; font-size: .72rem; letter-spacing: .3em; text-transform: uppercase;

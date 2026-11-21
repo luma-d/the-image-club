@@ -14,3 +14,5 @@ Participants pouring chemistry during a film developing workshop, Damascus, Sept
 C-41 colour developing explained at the whiteboard, Damascus, September 2026
 Film developing workshop discussion around the table, Damascus, September 2026
 Cyanotype plate with flowers and blue clips on the workshop table, Damascus, September 2026
+Cyanotype and black-and-white prints laid out on the workshop table, Damascus, September 2026
+Participant loading film into a changing bag during the film developing workshop, Damascus, September 2026

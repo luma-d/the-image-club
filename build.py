@@ -33,7 +33,7 @@ PAGE = '''<!DOCTYPE html>
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -247,13 +247,12 @@ def main():
         for anchor, en, ar in zip_longest(NAV_ANCHORS, nav[0], nav[1], fillvalue="")
     )
 
-    # Section labels ("01 — About") reuse the nav.md labels, so editing a
+    # Section labels reuse the nav.md labels, so editing a
     # label in nav.md updates both the top bar and the section heading.
-    AR_NUMS = ("٠١", "٠٢", "٠٣", "٠٤", "٠٥", "٠٦")
     sec_labels = {
-        i: ('<span class="en">%02d — %s</span>'
-            '<span class="ar" lang="ar" dir="rtl">%s — %s</span>'
-            % (i, html.escape(en), AR_NUMS[i - 1], html.escape(ar)))
+        i: ('<span class="en">%s</span>'
+            '<span class="ar" lang="ar" dir="rtl">%s</span>'
+            % (html.escape(en), html.escape(ar)))
         for i, (en, ar) in enumerate(zip_longest(nav[0], nav[1], fillvalue=""), 1)
     }
 
@@ -310,7 +309,7 @@ def main():
 
     # Founder photo right after the first About prose paragraph (if any).
     figure = ('    <figure class="about-figure">\n'
-              '      <img src="assets/about/founder.jpg" alt="Luma Darwish, founder of The Image Club" loading="lazy" />\n'
+              '      <img src="assets/about/founder.png" alt="Luma Darwish, founder of The Image Club" loading="lazy" />\n'
               '    </figure>\n')
     for i, para in enumerate(about_paras):
         if para.startswith('    <p class="prose'):
