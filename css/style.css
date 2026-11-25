@@ -302,10 +302,11 @@ html.lang-ar .diaries-title .ar {
 html.lang-ar .diaries-edition .ar { letter-spacing: 0; text-transform: none; font-weight: 700; }
 .diaries-art {
   display: block;
-  width: min(560px, 80%);
+  width: min(560px, 100%);
   height: auto;
-  margin: 2.6rem auto 1rem;
+  margin: 2.6rem 0 1rem;
 }
+html.lang-ar .diaries-art { margin: 2.6rem 0 1rem auto; }
 .diaries-intro {
   max-width: 1100px;
   margin: 2.2rem auto 0;
@@ -371,6 +372,7 @@ html.lang-ar .diaries-band .band-note { text-align: right; }
     width: min(420px, 88%);
     margin: 2rem auto 1rem;
   }
+  html.lang-ar .diaries-art { margin: 2rem auto 1rem; }
   #journal { text-align: center; }
   #journal .prose { text-align: center; margin-left: auto; margin-right: auto; }
   html.lang-ar #journal { text-align: center; }
