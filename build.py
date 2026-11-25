@@ -138,8 +138,8 @@ JOURNAL_MAIN = '''  <section class="block invert" id="journal">
       </div>
     </div>
     <div class="diaries-intro">
-      <img class="diaries-art" src="assets/journal/diaries-art.jpg" alt="Illustration of a man thinking in an armchair under a hanging lamp" />
-{INTRO}    </div>
+{INTRO}      <img class="diaries-art" src="assets/journal/diaries-art.jpg" alt="Illustration of a man thinking in an armchair under a hanging lamp" />
+    </div>
 {SECTIONS}  </section>
   <section class="diaries-band">
     <p class="band-lead">{BAND_LEAD}</p>
