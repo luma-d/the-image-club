@@ -136,9 +136,9 @@ JOURNAL_MAIN = '''  <section class="block invert" id="journal">
         <p class="diaries-tag">{TAG}</p>
         <p class="diaries-edition">{EDITION}</p>
       </div>
-      <img class="diaries-art" src="assets/journal/diaries-art.jpg" alt="Illustration of a man thinking in an armchair under a hanging lamp" />
     </div>
     <div class="diaries-intro">
+      <img class="diaries-art" src="assets/journal/diaries-art.jpg" alt="Illustration of a man thinking in an armchair under a hanging lamp" />
 {INTRO}    </div>
 {SECTIONS}  </section>
   <section class="diaries-band">
