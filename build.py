@@ -131,7 +131,6 @@ WORKSHOPS_MAIN = '''  <section class="block" data-reveal id="workshops">
 JOURNAL_MAIN = '''  <section class="block invert" id="journal">
     <div class="diaries-banner">
       <div class="diaries-text">
-        <p class="diaries-kicker">{KICKER}</p>
         <h1 class="diaries-title">{TITLE}</h1>
         <p class="diaries-sub">{SUB}</p>
         <p class="diaries-tag">{TAG}</p>
@@ -484,8 +483,7 @@ def main():
         "journal.html": (
             "Journal — The Image Club",
             JOURNAL_MAIN,
-            {"KICKER": pair("The Image Club · Journal", "نادي الصورة · يوميات"),
-             "TITLE": pair(j_banner_en[0], j_banner_ar[0]),
+            {"TITLE": pair(j_banner_en[0], j_banner_ar[0]),
              "SUB": pair(j_banner_en[1], j_banner_ar[1]),
              "TAG": pair(j_banner_en[2], j_banner_ar[2]),
              "EDITION": pair(j_banner_en[3], j_banner_ar[3]),

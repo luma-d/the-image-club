@@ -269,16 +269,6 @@ html.lang-ar #journal .prose { text-align: right; margin-left: auto; margin-righ
   margin: 0 auto;
 }
 .diaries-text { min-width: 0; }
-.diaries-kicker {
-  font-family: "Cormorant Garamond", serif;
-  font-size: .72rem; font-weight: 700;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: var(--mid);
-  border-bottom: 1px solid var(--hairline);
-  padding-bottom: .55rem;
-  margin: 0 0 1.1rem;
-}
-html.lang-ar .diaries-kicker .ar { letter-spacing: 0; text-transform: none; font-weight: 700; }
 .diaries-title {
   font-family: "Cormorant Garamond", serif;
   font-weight: 600;
