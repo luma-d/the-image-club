@@ -129,9 +129,22 @@ WORKSHOPS_MAIN = '''  <section class="block" data-reveal id="workshops">
 '''
 
 JOURNAL_MAIN = '''  <section class="block invert" id="journal">
-    <div class="section-inner">
-      <p class="section-label">{SEC3}</p>
-{JOURNAL_BODY}    </div>
+    <div class="diaries-banner">
+      <div class="diaries-text">
+        <p class="diaries-kicker">{KICKER}</p>
+        <h1 class="diaries-title">{TITLE}</h1>
+        <p class="diaries-sub">{SUB}</p>
+        <p class="diaries-tag">{TAG}</p>
+        <p class="diaries-edition">{EDITION}</p>
+      </div>
+      <img class="diaries-art" src="assets/journal/diaries-art.jpg" alt="Illustration of a man thinking in an armchair under a hanging lamp" />
+    </div>
+    <div class="diaries-intro">
+{INTRO}    </div>
+{SECTIONS}  </section>
+  <section class="diaries-band">
+    <p class="band-lead">{BAND_LEAD}</p>
+    <p class="band-note">{BAND_NOTE}</p>
   </section>
 '''
 
@@ -353,9 +366,47 @@ def main():
             '        <h3>%s</h3>\n%s'
             '      </article>\n' % (i, pair(c_en["title"], c_ar["title"]), body))
 
-    # Journal / Membership / Contact: every paragraph in the file is body
-    # text; the section title comes from nav.md. Button label and location
-    # line are fixed in the template.
+    # Journal: paragraphs 1-4 are the banner (title, subtitle, tagline,
+    # edition line); paragraphs before the first ### heading are the intro;
+    # each ### section is numbered (01/02/03 in English, ١./٢./٣. in Arabic)
+    # with paragraphs beneath it; the > lines become the closing red band.
+    # Pairing is by position (like about_sections); missing/extra sections
+    # warn, never crash.
+    AR_DIGITS = "٠١٢٣٤٥٦٧٨٩"
+
+    def ar_number(n):
+        return "".join(AR_DIGITS[int(d)] for d in str(n)) + "."
+
+    def journal_split(paras):
+        banner = list(paras[:4])
+        if len(banner) < 4:
+            banner += [""] * (4 - len(banner))
+        rest = paras[4:]
+        intro, sections, closers = [], [], []
+        head, body, seen = None, [], False
+        for para in rest:
+            if para.startswith("### "):
+                if seen:
+                    sections.append((head, body))
+                head, body = para[4:], []
+                seen = True
+            elif para.startswith("> "):
+                closers.append(para[2:])
+            elif not seen:
+                intro.append(para)
+            else:
+                body.append(para)
+        if seen:
+            sections.append((head, body))
+        return banner, intro, sections, closers
+
+    j_banner_en, j_intro_en, j_sec_en, j_close_en = journal_split(paragraphs(journal[0]))
+    j_banner_ar, j_intro_ar, j_sec_ar, j_close_ar = journal_split(paragraphs(journal[1]))
+    if len(j_sec_en) != len(j_sec_ar):
+        print("warning: journal.md has %d en sections but %d ar sections — "
+              "pairing what matches; extras show in one language only"
+              % (len(j_sec_en), len(j_sec_ar)))
+
     def body_of(block_en, block_ar, name):
         if not block_en and not block_ar:
             print("warning: %s.md has no text" % name)
@@ -363,8 +414,25 @@ def main():
             '    <p class="prose">%s</p>\n' % pair(en, ar)
             for en, ar in zip_longest(block_en, block_ar, fillvalue=""))
 
-    j_en, j_ar = paragraphs(journal[0]), paragraphs(journal[1])
-    journal_body = body_of(j_en, j_ar, "journal")
+    intro_paras = "".join(
+        '      <p class="prose%s">%s</p>\n' % (side(en, ar), pair(en, ar))
+        for en, ar in zip_longest(j_intro_en, j_intro_ar, fillvalue=""))
+
+    section_parts = []
+    for i, ((h_en, b_en), (h_ar, b_ar)) in enumerate(
+            zip_longest(j_sec_en, j_sec_ar, fillvalue=("", [])), start=1):
+        num = pair("%02d" % i, ar_number(i))
+        section_parts.append('    <h3 class="diaries-heading%s"><span class="diaries-num">%s</span> %s</h3>\n'
+                             % (side(h_en, h_ar), num, pair(h_en, h_ar)))
+        for en, ar in zip_longest(b_en, b_ar, fillvalue=""):
+            section_parts.append('    <p class="prose%s">%s</p>\n'
+                                 % (side(en, ar), pair(en, ar)))
+    journal_sections = "".join(section_parts)
+
+    j_close_en = (j_close_en + ["", ""])[:2]
+    j_close_ar = (j_close_ar + ["", ""])[:2]
+    band_lead = pair(j_close_en[0], j_close_ar[0])
+    band_note = pair(j_close_en[1], j_close_ar[1])
 
     m_en, m_ar = paragraphs(membership[0]), paragraphs(membership[1])
     membership_body = body_of(m_en, m_ar, "membership")
@@ -416,8 +484,15 @@ def main():
         "journal.html": (
             "Journal — The Image Club",
             JOURNAL_MAIN,
-            {"SEC3": sec_labels.get(3, ""),
-             "JOURNAL_BODY": journal_body},
+            {"KICKER": pair("The Image Club · Journal", "نادي الصورة · يوميات"),
+             "TITLE": pair(j_banner_en[0], j_banner_ar[0]),
+             "SUB": pair(j_banner_en[1], j_banner_ar[1]),
+             "TAG": pair(j_banner_en[2], j_banner_ar[2]),
+             "EDITION": pair(j_banner_en[3], j_banner_ar[3]),
+             "INTRO": intro_paras,
+             "SECTIONS": journal_sections,
+             "BAND_LEAD": band_lead,
+             "BAND_NOTE": band_note},
         ),
         "membership.html": (
             "Membership — The Image Club",
