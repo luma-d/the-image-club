@@ -255,6 +255,8 @@ h1 { font-size: clamp(3rem, 8vw, 5.5rem); letter-spacing: .02em; }
 
 /* ---- Journal (light theme) ---- */
 #journal { text-align: left; }
+/* text-align:left is physical, so in Arabic the whole section must flip */
+html.lang-ar #journal { text-align: right; }
 .journal-wrap { max-width: 1100px; margin: 0 auto; }
 
 .journal-banner {
