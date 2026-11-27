@@ -129,23 +129,195 @@ WORKSHOPS_MAIN = '''  <section class="block" data-reveal id="workshops">
 '''
 
 JOURNAL_MAIN = '''  <section class="block invert" id="journal">
-    <div class="diaries-banner">
-      <div class="diaries-text">
-        <h1 class="diaries-title">{TITLE}</h1>
-        <p class="diaries-sub">{SUB}</p>
-        <p class="diaries-tag">{TAG}</p>
-        <p class="diaries-edition">{EDITION}</p>
+    <div class="journal-wrap">
+      <div class="journal-banner">
+        <div class="j-banner-text">
+          <h1 class="j-title">{TITLE}</h1>
+          <div class="j-rule" aria-hidden="true"></div>
+          <p class="j-sub">{SUB}</p>
+          <p class="j-tag">{TAG}</p>
+        </div>
+        <figure class="j-art">
+          <img src="assets/journal/diaries-art.jpg" alt="Illustration of a man thinking in an armchair under a hanging lamp" loading="lazy" />
+        </figure>
+      </div>
+      <p class="j-editions-label">{EDITIONS}</p>
+      <article class="edition-card">
+        <figure class="edition-photo">
+          <img src="assets/journal/taxi.jpg" alt="A taxi seen from the street" loading="lazy" />
+        </figure>
+        <div class="edition-panel">
+          <p class="edition-label">{EDITION_LABEL}</p>
+          <h2 class="edition-title">{THEME_TITLE}</h2>
+          <p class="edition-pill"><span class="pill-dot" aria-hidden="true"></span>{DEADLINE}</p>
+          <p class="edition-desc">{DESC}</p>
+          <button class="curator-chip" data-curator type="button" aria-haspopup="dialog">
+            <img class="curator-avatar" src="assets/journal/baraa.jpg" alt="" />
+            <span class="curator-chip-text">
+              <span class="curator-chip-label">{CURATOR_LABEL}</span>
+              <span class="curator-chip-name">{CURATOR_NAME}</span>
+            </span>
+          </button>
+          <a class="edition-btn" href="edition-01.html">{BUTTON_LABEL}<span class="btn-arrow" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <div class="j-intro">
+{INTRO}      </div>
+      <div class="info-cards">
+{CARDS}      </div>
+      <div class="band">
+        <p class="band-text">{BAND}</p>
+        <a class="band-btn" href="https://www.instagram.com/the.image.club" target="_blank" rel="noopener">@THE.IMAGE.CLUB</a>
       </div>
     </div>
-    <div class="diaries-intro">
-{INTRO}      <img class="diaries-art" src="assets/journal/diaries-art.jpg" alt="Illustration of a man thinking in an armchair under a hanging lamp" />
-    </div>
-{SECTIONS}  </section>
-  <section class="diaries-band">
-    <p class="band-lead">{BAND_LEAD}</p>
-    <p class="band-note">{BAND_NOTE}</p>
   </section>
-'''
+{POPUP}'''
+
+EDITION_MAIN = '''  <div class="subnav-wrap">
+    <nav class="subnav" aria-label="Breadcrumb and sections">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="journal.html">{BC_HOME}</a><span class="bc-sep" aria-hidden="true">/</span><span class="bc-current">{BC_CURRENT}</span>
+      </nav>
+      <nav class="anchor-links" aria-label="Page sections">
+        <a href="#about">{A_THEME}</a>
+        <a href="#curator">{A_CURATOR}</a>
+        <a href="#open-call">{A_OPEN}</a>
+        <a class="submit-link" href="{TALLY}" target="_blank" rel="noopener">{A_SUBMIT}</a>
+      </nav>
+    </nav>
+  </div>
+
+  <section class="ed-hero">
+    <p class="ed-kicker">{HERO_KICKER}</p>
+    <h1 class="ed-title">{HERO_TITLE}</h1>
+    <div class="ed-mosaic">
+      <figure class="ed-m-taxi"><img src="assets/journal/taxi.jpg" alt="A taxi seen from the street" loading="lazy" /></figure>
+      <figure class="ed-m-mosaic"><img src="assets/journal/mosaic.jpg" alt="A dark street mosaic" loading="lazy" /></figure>
+      <figure class="ed-m-street"><img src="assets/journal/street.jpg" alt="A quiet street" loading="lazy" /></figure>
+    </div>
+    <p class="ed-caption">{HERO_CAPTION}</p>
+  </section>
+
+  <section class="ed-section" id="about">
+    <p class="ed-label"><span class="ed-label-num">{ABOUT_NUM}</span>{ABOUT_LABEL}</p>
+    <p class="ed-para">{ABOUT_P1}</p>
+    <p class="ed-para">{ABOUT_P2}</p>
+    <p class="ed-para">{ABOUT_P3}</p>
+    <div class="ed-photo-row">
+      <figure><img src="assets/journal/crosswalk.jpg" alt="Crosswalk" loading="lazy" /></figure>
+      <figure><img src="assets/journal/protest.jpg" alt="Protest" loading="lazy" /></figure>
+      <figure><img src="assets/journal/hate.jpg" alt="Protest poster" loading="lazy" /></figure>
+      <figure><img src="assets/journal/arch.jpg" alt="Archway" loading="lazy" /></figure>
+    </div>
+  </section>
+
+  <section class="ed-section" id="curator">
+    <p class="ed-label"><span class="ed-label-num">{CURATOR_NUM}</span>{CURATOR_SECTION_LABEL}</p>
+    <div class="ed-curator-card">
+      <figure class="ed-portrait"><img src="assets/journal/baraa.jpg" alt="Portrait of Baraa Salih" loading="lazy" /></figure>
+      <div class="ed-curator-text">
+        <h2 class="ed-curator-name">{CURATOR_NAME}</h2>
+        <p class="ed-curator-role">{CURATOR_ROLE}</p>
+        <p class="ed-curator-bio">{CURATOR_BIO}</p>
+        <div class="ed-gallery">
+          <figure><img src="assets/journal/woman.jpg" alt="Woman waving" loading="lazy" /></figure>
+          <figure><img src="assets/journal/swimmer.jpg" alt="Swimmer with arms outstretched" loading="lazy" /></figure>
+          <figure><img src="assets/journal/kids.jpg" alt="Children in a street" loading="lazy" /></figure>
+          <figure><img src="assets/journal/rubble.jpg" alt="Rubble and a motorcycle" loading="lazy" /></figure>
+        </div>
+        <p class="ed-caption">{GALLERY_CAPTION}</p>
+        <button class="ed-outline-btn" data-curator type="button" aria-haspopup="dialog">{MORE_BTN}</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="ed-section" id="open-call">
+    <p class="ed-label"><span class="ed-label-num">{OPEN_NUM}</span>{OPEN_LABEL}</p>
+    <div class="ed-opencall-grid">
+      <div class="ed-details">
+        <h3 class="ed-sub-title">{DETAILS_HEADING}</h3>
+        <ol class="ed-detail-list">
+          <li><span class="ed-detail-num">{D1_NUM}</span><span class="ed-detail-text">{D1}</span></li>
+          <li><span class="ed-detail-num">{D2_NUM}</span><span class="ed-detail-text">{D2}</span></li>
+          <li><span class="ed-detail-num">{D3_NUM}</span><span class="ed-detail-text">{D3}</span></li>
+          <li><span class="ed-detail-num">{D4_NUM}</span><span class="ed-detail-text">{D4}</span></li>
+          <li><span class="ed-detail-num">{D5_NUM}</span><span class="ed-detail-text">{D5}</span></li>
+        </ol>
+        <div class="ed-howto">
+          <h4 class="ed-howto-title">{HOWTO_HEAD}</h4>
+          <p class="ed-howto-body">{HOWTO_BODY}</p>
+        </div>
+      </div>
+      <aside class="ed-keydates">
+        <h3 class="ed-kd-title">{KD_TITLE}</h3>
+        <div class="ed-kd-row"><span class="ed-kd-label">{KD1_LABEL}</span><span class="ed-kd-value">{KD1_VALUE}</span></div>
+        <div class="ed-kd-row"><span class="ed-kd-label">{KD2_LABEL}</span><span class="ed-kd-value">{KD2_VALUE}</span></div>
+        <div class="ed-kd-row"><span class="ed-kd-label">{KD3_LABEL}</span><span class="ed-kd-value">{KD3_VALUE}</span></div>
+        <a class="ed-submit" href="{TALLY}" target="_blank" rel="noopener">{SUBMIT_LABEL}</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="ed-section">
+    <p class="ed-label">{GUIDES_LABEL}</p>
+    <div class="ed-guide-row ed-guide-row-3">
+      <article class="ed-guide">
+        <h3>{G1_TITLE}</h3>
+        <ul>
+          <li>{G1_B1}</li>
+          <li>{G1_B2}</li>
+          <li>{G1_B3}</li>
+          <li>{G1_B4}</li>
+        </ul>
+      </article>
+      <article class="ed-guide">
+        <h3>{G2_TITLE}</h3>
+        <ul>
+          <li>{G2_B1}</li>
+          <li>{G2_B2}</li>
+          <li>{G2_B3}</li>
+          <li>{G2_B4}</li>
+          <li>{G2_B5}</li>
+        </ul>
+      </article>
+      <article class="ed-guide">
+        <h3>{G3_TITLE}</h3>
+        <ul>
+          <li>{G3_B1}</li>
+          <li>{G3_B2}</li>
+          <li>{G3_B3}</li>
+        </ul>
+      </article>
+    </div>
+    <div class="ed-guide-row ed-guide-row-2">
+      <article class="ed-guide">
+        <h3>{G4_TITLE}</h3>
+        <ul>
+          <li>{G4_B1}</li>
+          <li>{G4_B2}</li>
+          <li>{G4_B3}</li>
+          <li>{G4_B4}</li>
+        </ul>
+      </article>
+      <article class="ed-guide">
+        <h3>{G5_TITLE}</h3>
+        <ul>
+          <li>{G5_B1}</li>
+          <li>{G5_B2}</li>
+          <li>{G5_B3}</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="ed-cta">
+    <div class="ed-cta-text">
+      <h2 class="ed-cta-title">{CTA_TITLE}</h2>
+      <p class="ed-cta-sub">{CTA_SUB}</p>
+    </div>
+    <a class="ed-submit" href="{TALLY}" target="_blank" rel="noopener">{CTA_BTN}</a>
+  </section>
+{POPUP}'''
 
 MEMBERSHIP_MAIN = '''  <section class="block invert" id="membership">
     <p class="section-label">{SEC4}</p>
@@ -245,6 +417,141 @@ def sub(template, **values):
     for key, value in values.items():
         template = template.replace("{" + key + "}", value)
     return template
+
+
+def popup_markup():
+    """Shared Baraa Salih popup modal, included in both journal pages."""
+    return (
+        '  <div class="popup-overlay" id="curatorPopup" role="dialog" aria-modal="true" '
+        'aria-labelledby="popupName" hidden>\n'
+        '    <div class="popup-panel">\n'
+        '      <button class="popup-close" type="button" aria-label="Close">×</button>\n'
+        '      <figure class="popup-portrait"><img src="assets/journal/baraa.jpg" alt="Portrait of Baraa Salih" loading="lazy" /></figure>\n'
+        '      <div class="popup-text">\n'
+        '        <p class="popup-kicker">%s</p>\n'
+        '        <h2 class="popup-name" id="popupName">%s</h2>\n'
+        '        <p class="popup-lead">%s</p>\n'
+        '        <p class="popup-bio">%s</p>\n'
+        '        <p class="popup-bio">%s</p>\n'
+        '        <a class="popup-ig" href="https://www.instagram.com/braa_salih1/" target="_blank" rel="noopener">%s</a>\n'
+        '      </div>\n'
+        '      <div class="popup-gallery">\n'
+        '        <figure><img src="assets/journal/woman.jpg" alt="Woman waving" loading="lazy" /></figure>\n'
+        '        <figure><img src="assets/journal/swimmer.jpg" alt="Swimmer with arms outstretched" loading="lazy" /></figure>\n'
+        '        <figure><img src="assets/journal/kids.jpg" alt="Children in a street" loading="lazy" /></figure>\n'
+        '        <figure><img src="assets/journal/rubble.jpg" alt="Rubble and a motorcycle" loading="lazy" /></figure>\n'
+        '      </div>\n'
+        '      <p class="popup-caption">%s</p>\n'
+        '    </div>\n'
+        '  </div>\n'
+    ) % (
+        pair("Guest curator · Edition 01", "القيّم الفني الضيف · العدد الأول"),
+        pair("Baraa Salih", "براء صالح"),
+        pair("An independent photographer working across documentary photography and personal visual storytelling.",
+             "مصوّر مستقل يعمل بين التصوير الوثائقي والسرد البصري الشخصي."),
+        pair("Moving between Syria, Turkey and France, my practice has ranged from following the news to observing everyday life. Street photography has opened up a new space for my work — not simply as a means of expression, but as a way to rediscover places, people's relationships with them, and the relationship between the individual and the collective.",
+             "بين سوريا وتركيا وفرنسا، تنوّعت تجربتي بين متابعة الخبر ومراقبة الحياة اليومية. ومنحني تصوير الشارع مساحة جديدة للممارسة، ليس كوسيلة للتعبير فقط، بل كطريقة لإعادة اكتشاف المكان وعلاقة الناس به، وعلاقة الفرد بالجماعة."),
+        pair("To me, the street is an open stage without a director, a place from which to observe the world and see it in different ways.",
+             "فالشارع، في نظري، مسرح مفتوح بلا مخرج، يمكن من خلاله ملاحظة العالم ورؤيته بطرق مختلفة."),
+        pair("Instagram · @braa_salih1 ↗", "إنستغرام · braa_salih1 ↗"),
+        pair("Photographs: Baraa Salih", "الصور: براء صالح"),
+    )
+
+
+def ar_num(n):
+    """Arabic-Indic digits, no punctuation: 1 -> ٠١."""
+    return "".join("٠١٢٣٤٥٦٧٨٩"[int(d)] for d in str(n))
+
+
+def edition_values():
+    """Hardcoded bilingual values for the Edition 01 page (spec section B)."""
+    TALLY = "https://tally.so/r/4ar4Ao"
+    return {
+        "TALLY": TALLY,
+        "POPUP": popup_markup(),
+        "BC_HOME": pair("Diaries", "يوميات"),
+        "BC_CURRENT": pair("Edition 01 · From the Streets", "العدد الأول · من الشارع"),
+        "A_THEME": pair("The theme", "الموضوع"),
+        "A_CURATOR": pair("Guest curator", "القيّم الفني الضيف"),
+        "A_OPEN": pair("Open call", "الدعوة المفتوحة"),
+        "A_SUBMIT": pair("Submit your work ↗", "قدّم مشاركتك ↗"),
+        "HERO_KICKER": pair("First Edition · Open Call", "العدد الأول · دعوة مفتوحة للمشاركة"),
+        "HERO_TITLE": pair("From the Streets", "من الشارع"),
+        "HERO_CAPTION": pair("Photographs: Luma Darwish", "الصور: لوما درويش"),
+        "ABOUT_NUM": pair("01", "٠١"),
+        "ABOUT_LABEL": pair("About the theme", "عن الموضوع"),
+        "ABOUT_P1": pair("The street is an open space where everyday life unfolds. It is where faces, stories and fleeting encounters intersect, and where our relationships with places and one another take shape.",
+                         "الشارع مساحة مفتوحة للحياة اليومية، مكان تتقاطع فيه الوجوه والقصص واللقطات العابرة، وتشكّل فيه علاقتنا بالمكان وبالآخرين."),
+        "ABOUT_P2": pair("For the first edition of Diaries, we invite photographers to explore the street through their lenses and share photographs that capture what draws their attention: faces, movement, light, shadows, details, unexpected moments and everyday scenes.",
+                         "في العدد الأول من يوميات، ندعو المصوّرين إلى استكشاف الشارع من خلال عدساتهم، ومشاركة صور تلتقط ما يلتفتون إليه: الوجوه، الحركة، الضوء، الظلال، التفاصيل، اللقطات غير المتوقعة والمشاهد اليومية."),
+        "ABOUT_P3": pair("We are not looking for a fixed definition of street photography. We welcome different experiences and perspectives, and photographs that reflect how each photographer sees the world around them.",
+                         "لا نبحث عن تعريف محدد للتصوير الشارع، بل نرحّب بتجارب ورؤى مختلفة، وكل صورة تعكس طريقة صاحبها في رؤية العالم من حوله."),
+        "CURATOR_NUM": pair("02", "٠٢"),
+        "CURATOR_SECTION_LABEL": pair("Guest curator", "القيّم الفني الضيف"),
+        "CURATOR_NAME": pair("Baraa Salih", "براء صالح"),
+        "CURATOR_ROLE": pair("Independent photographer", "مصوّر مستقل"),
+        "CURATOR_BIO": pair("An independent photographer working across documentary photography and personal visual storytelling. His practice has taken him between Syria, Turkey and France, and he approaches street photography as a way to rediscover places and people's relationships with them.",
+                            "مصوّر مستقل يعمل بين التصوير الوثائقي والسرد البصري الشخصي. تنوّعت تجربته بين سوريا وتركيا وفرنسا، ويمنحه تصوير الشارع بوصفه مساحة لإعادة اكتشاف المكان وعلاقة الناس به."),
+        "GALLERY_CAPTION": pair("Photographs: Baraa Salih", "الصور: براء صالح"),
+        "MORE_BTN": pair("More about Baraa →", "تعرّف أكثر على براء ←"),
+        "OPEN_NUM": pair("03", "٠٣"),
+        "OPEN_LABEL": pair("Open call", "الدعوة المفتوحة"),
+        "DETAILS_HEADING": pair("Submission details", "تفاصيل المشاركة"),
+        "D1_NUM": pair("01", "٠١"),
+        "D1": pair("Open to photographers of all experience levels.",
+                   "الدعوة مفتوحة للمصوّرين من جميع مستويات الخبرة."),
+        "D2_NUM": pair("02", "٠٢"),
+        "D2": pair("Digital and analogue photography are welcome.",
+                   "التصوير الرقمي والأنالوغ مرحّب بهما."),
+        "D3_NUM": pair("03", "٠٣"),
+        "D3": pair("Submit between one and three photographs.",
+                   "يمكن تقديم صورة واحدة إلى ثلاث صور."),
+        "D4_NUM": pair("04", "٠٤"),
+        "D4": pair("Submission deadline: December 10, 2026.",
+                   "آخر موعد للتقديم: 10 ديسمبر 2026."),
+        "D5_NUM": pair("05", "٠٥"),
+        "D5": pair("Approximately 10 photographers will be selected for this edition.",
+                   "سيتم اختيار نحو 10 مصوّرين للمشاركة في هذا العدد."),
+        "HOWTO_HEAD": pair("How to participate", "كيف تشارك؟"),
+        "HOWTO_BODY": pair("Please read the submission guidelines below, then submit your information and photographs through the application form.",
+                           "اقرأ إرشادات المشاركة أدناه، ثم أرسل معلوماتك وصورك من خلال استمارة التقديم."),
+        "KD_TITLE": pair("Key dates", "مواعيد هامة"),
+        "KD1_LABEL": pair("Submission deadline", "آخر موعد للتقديم"),
+        "KD1_VALUE": pair("December 10, 2026", "10 ديسمبر 2026"),
+        "KD2_LABEL": pair("Photographers selected", "عدد المصوّرين المختارين"),
+        "KD2_VALUE": pair("≈ 10", "نحو 10"),
+        "KD3_LABEL": pair("Selected photographers contacted", "التواصل مع المختارين"),
+        "KD3_VALUE": pair("After the call closes", "بعد انتهاء فترة التقديم"),
+        "SUBMIT_LABEL": pair("Submit your work ↗", "قدّم مشاركتك ↗"),
+        "GUIDES_LABEL": pair("Submission guidelines", "إرشادات المشاركة"),
+        "G1_TITLE": pair("Photographs", "الصور"),
+        "G1_B1": pair("Submit between one and three photographs.", "يمكن تقديم صورة واحدة إلى ثلاث صور."),
+        "G1_B2": pair("All photographs must be your own work, and you must hold the rights to them.", "يجب أن تكون الصور من تصويرك وأن تملك حقوق استخدامها."),
+        "G1_B3": pair("Both digital and analogue photography are welcome.", "نرحّب بالتصوير الرقمي والأنالوغ والمعالجة الفوتوغرافية التي تقدّم رؤيتك."),
+        "G1_B4": pair("No watermarks or added logos.", "لا تُقبَل الصور التي تتضمن علامات مائية أو شعارات مضافة."),
+        "G2_TITLE": pair("Image specifications", "مواصفات الصور"),
+        "G2_B1": pair("Format: JPEG.", "الصيغة: JPEG."),
+        "G2_B2": pair("Colour profile: sRGB.", "مساحة الألوان: sRGB."),
+        "G2_B3": pair("Maximum file size: 2 MB per photograph.", "ألا يتجاوز حجم الصورة 2 ميغابايت."),
+        "G2_B4": pair("Maximum dimensions: 2,000 pixels on the longest edge.", "ألا يتجاوز الضلع الأطول 2000 بكسل."),
+        "G2_B5": pair("Name files using your name and image number (e.g. Name_01.jpg).", "تسمية الملفات باسم المصوّر ورقم الصورة (مثال: Name_01.jpg)."),
+        "G3_TITLE": pair("Text and information", "النصوص والمعلومات"),
+        "G3_B1": pair("Include a title for each photograph, if applicable.", "أرفق عنواناً لكل صورة إن وجد."),
+        "G3_B2": pair("You may include a short description or reflection about the image or the idea behind it. This is optional.", "يمكنك إضافة وصف قصير أو نص يشرح سياق الصورة أو الفكرة ورائها، هذا اختياري."),
+        "G3_B3": pair("Include a short biography introducing yourself and your photographic practice.", "أضف نبذة قصيرة عنك وعن تجربتك الفوتوغرافية."),
+        "G4_TITLE": pair("Image rights and publication", "حقوق الصور والنشر"),
+        "G4_B1": pair("Photographers retain full ownership and copyright of their work.", "يحتفظ المصوّر بكامل حقوق ملكية صوره."),
+        "G4_B2": pair("By submitting, you grant The Image Club permission to review your photographs for selection purposes only.", "يمنح تقديم الصور نادي يوميات الإذن بنشرها لأغراض الاختيار فقط."),
+        "G4_B3": pair("If selected, you will be asked to confirm permission for publication in this edition of Diaries, with photographer credit.", "في حال اختيار الصور، سيُطلب تأكيد موافقة المصوّر على نشرها ضمن هذا العدد من يوميات، مع ذكر اسمه."),
+        "G4_B4": pair("Any additional use beyond this edition requires separate permission.", "أي استخدام إضافي لصور خارج نطاق هذا العدد يتطلب موافقة منفصلة من المصوّر."),
+        "G5_TITLE": pair("Please note", "ملاحظات"),
+        "G5_B1": pair("Submission does not guarantee selection.", "تقديم الصور لا يضمن اختيارها."),
+        "G5_B2": pair("Selected photographers will be contacted after the submission period closes.", "سيتم التواصل مع المصوّرين المختارين بعد انتهاء فترة التقديم."),
+        "G5_B3": pair("Unselected photographs will not be published or used for other purposes.", "لن تُنشر الصور غير المختارة أو تُستخدم لأغراض أخرى."),
+        "CTA_TITLE": pair("Ready to take part?", "جاهز للمشاركة؟"),
+        "CTA_SUB": pair("Submission deadline: December 10, 2026", "آخر موعد للتقديم: 10 ديسمبر 2026"),
+        "CTA_BTN": pair("Submit your work ↗", "قدّم مشاركتك ↗"),
+    }
 
 
 def main():
@@ -365,22 +672,22 @@ def main():
             '        <h3>%s</h3>\n%s'
             '      </article>\n' % (i, pair(c_en["title"], c_ar["title"]), body))
 
-    # Journal: paragraphs 1-4 are the banner (title, subtitle, tagline,
-    # edition line); paragraphs before the first ### heading are the intro;
-    # each ### section is numbered (01/02/03 in English, ١./٢./٣. in Arabic)
-    # with paragraphs beneath it; the > lines become the closing red band.
-    # Pairing is by position (like about_sections); missing/extra sections
-    # warn, never crash.
-    AR_DIGITS = "٠١٢٣٤٥٦٧٨٩"
-
-    def ar_number(n):
-        return "".join(AR_DIGITS[int(d)] for d in str(n)) + "."
-
+    # Journal: paragraphs 1-3 are the banner (title, subtitle, tagline);
+    # paragraph 4 is the editions label; paragraphs 5-9 are the edition card
+    # (theme title, description, curator label, curator name, button label);
+    # remaining paragraphs before the first ### heading are the intro; each
+    # ### section is an info card (title + body); the > lines become the
+    # Instagram band (button label hardcoded). Pairing is by position
+    # (like about_sections); missing/extra sections warn, never crash.
     def journal_split(paras):
-        banner = list(paras[:4])
-        if len(banner) < 4:
-            banner += [""] * (4 - len(banner))
-        rest = paras[4:]
+        banner = list(paras[:3])
+        if len(banner) < 3:
+            banner += [""] * (3 - len(banner))
+        editions_label = paras[3] if len(paras) > 3 else ""
+        card = list(paras[4:9])
+        if len(card) < 5:
+            card += [""] * (5 - len(card))
+        rest = paras[9:]
         intro, sections, closers = [], [], []
         head, body, seen = None, [], False
         for para in rest:
@@ -397,10 +704,10 @@ def main():
                 body.append(para)
         if seen:
             sections.append((head, body))
-        return banner, intro, sections, closers
+        return banner, editions_label, card, intro, sections, closers
 
-    j_banner_en, j_intro_en, j_sec_en, j_close_en = journal_split(paragraphs(journal[0]))
-    j_banner_ar, j_intro_ar, j_sec_ar, j_close_ar = journal_split(paragraphs(journal[1]))
+    j_banner_en, j_label_en, j_card_en, j_intro_en, j_sec_en, j_close_en = journal_split(paragraphs(journal[0]))
+    j_banner_ar, j_label_ar, j_card_ar, j_intro_ar, j_sec_ar, j_close_ar = journal_split(paragraphs(journal[1]))
     if len(j_sec_en) != len(j_sec_ar):
         print("warning: journal.md has %d en sections but %d ar sections — "
               "pairing what matches; extras show in one language only"
@@ -414,24 +721,28 @@ def main():
             for en, ar in zip_longest(block_en, block_ar, fillvalue=""))
 
     intro_paras = "".join(
-        '      <p class="prose%s">%s</p>\n' % (side(en, ar), pair(en, ar))
+        '      <p class="prose j-intro-para">%s</p>\n' % pair(en, ar)
         for en, ar in zip_longest(j_intro_en, j_intro_ar, fillvalue=""))
 
     section_parts = []
     for i, ((h_en, b_en), (h_ar, b_ar)) in enumerate(
             zip_longest(j_sec_en, j_sec_ar, fillvalue=("", [])), start=1):
-        num = pair("%02d" % i, ar_number(i))
-        section_parts.append('    <h3 class="diaries-heading%s"><span class="diaries-num">%s</span> %s</h3>\n'
-                             % (side(h_en, h_ar), num, pair(h_en, h_ar)))
-        for en, ar in zip_longest(b_en, b_ar, fillvalue=""):
-            section_parts.append('    <p class="prose%s">%s</p>\n'
-                                 % (side(en, ar), pair(en, ar)))
+        body_en = " ".join(b for b in b_en if b)
+        body_ar = " ".join(b for b in b_ar if b)
+        section_parts.append('      <article class="info-card">\n'
+                             '        <span class="info-num">%s</span>\n'
+                             '        <h3 class="info-title">%s</h3>\n'
+                             '        <p class="info-body">%s</p>\n'
+                             '      </article>\n'
+                             % (pair("%02d" % i, ar_num(i)),
+                                pair(h_en, h_ar),
+                                pair(body_en, body_ar)))
     journal_sections = "".join(section_parts)
 
-    j_close_en = (j_close_en + ["", ""])[:2]
-    j_close_ar = (j_close_ar + ["", ""])[:2]
-    band_lead = pair(j_close_en[0], j_close_ar[0])
-    band_note = pair(j_close_en[1], j_close_ar[1])
+    band_text_en = " ".join(c for c in j_close_en if c)
+    band_text_ar = " ".join(c for c in j_close_ar if c)
+    if not band_text_en and not band_text_ar:
+        print("warning: journal.md has no Instagram band line (>)")
 
     m_en, m_ar = paragraphs(membership[0]), paragraphs(membership[1])
     membership_body = body_of(m_en, m_ar, "membership")
@@ -486,11 +797,24 @@ def main():
             {"TITLE": pair(j_banner_en[0], j_banner_ar[0]),
              "SUB": pair(j_banner_en[1], j_banner_ar[1]),
              "TAG": pair(j_banner_en[2], j_banner_ar[2]),
-             "EDITION": pair(j_banner_en[3], j_banner_ar[3]),
+             "EDITIONS": pair(j_label_en, j_label_ar),
+             "EDITION_LABEL": pair("Edition 01", "العدد الأول"),
+             "THEME_TITLE": pair(j_card_en[0], j_card_ar[0]),
+             "DEADLINE": pair("Open call — Deadline December 10, 2026",
+                              "دعوة مفتوحة — آخر موعد ١٠ ديسمبر ٢٠٢٦"),
+             "DESC": pair(j_card_en[1], j_card_ar[1]),
+             "CURATOR_LABEL": pair(j_card_en[2], j_card_ar[2]),
+             "CURATOR_NAME": pair(j_card_en[3], j_card_ar[3]),
+             "BUTTON_LABEL": pair(j_card_en[4], j_card_ar[4]),
              "INTRO": intro_paras,
-             "SECTIONS": journal_sections,
-             "BAND_LEAD": band_lead,
-             "BAND_NOTE": band_note},
+             "CARDS": journal_sections,
+             "BAND": pair(band_text_en, band_text_ar),
+             "POPUP": popup_markup()},
+        ),
+        "edition-01.html": (
+            "From the Streets — Diaries Edition 01 — The Image Club",
+            EDITION_MAIN,
+            edition_values(),
         ),
         "membership.html": (
             "Membership — The Image Club",

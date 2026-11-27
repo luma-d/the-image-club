@@ -41,3 +41,34 @@ document.querySelector(".car-prev")?.addEventListener("click", () =>
   carTrack?.scrollBy({ left: -carDir() * carTrack.clientWidth * 0.9, behavior: "smooth" }));
 document.querySelector(".car-next")?.addEventListener("click", () =>
   carTrack?.scrollBy({ left: carDir() * carTrack.clientWidth * 0.9, behavior: "smooth" }));
+
+/* Baraa Salih popup modal (shared, opened by [data-curator] triggers) */
+const popup = document.getElementById("curatorPopup");
+let popupTrigger = null;
+function popupOpen() {
+  if (!popup) return;
+  popup.hidden = false;
+  document.body.style.overflow = "hidden";
+  popup.querySelector(".popup-close")?.focus();
+}
+function popupClose() {
+  if (!popup) return;
+  popup.hidden = true;
+  document.body.style.overflow = "";
+  if (popupTrigger) popupTrigger.focus();
+  popupTrigger = null;
+}
+document.querySelectorAll("[data-curator]").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
+    popupTrigger = el;
+    popupOpen();
+  });
+});
+if (popup) {
+  popup.querySelector(".popup-close")?.addEventListener("click", popupClose);
+  popup.addEventListener("click", (e) => { if (e.target === popup) popupClose(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !popup.hidden) popupClose();
+  });
+}
