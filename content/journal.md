@@ -45,7 +45,7 @@ Every two months, we introduce a new theme and open submissions to photographers
 
 الشارع مساحة مفتوحة للحياة اليومية، مكان تتقاطع فيه الوجوه والقصص واللقطات العابرة.
 
-المقيّم الفني للصور
+القَيِّم الفَنِّي لِلصُّوَر
 
 براء صالح
 
