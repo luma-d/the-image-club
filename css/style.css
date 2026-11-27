@@ -293,7 +293,7 @@ html.lang-ar .j-sub { color: #3d3b37; font-style: normal; }
 .j-tag {
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
-  font-size: clamp(1.05rem, 1.9vw, 1.35rem);
+  font-size: clamp(1.15rem, 1.9vw, 1.35rem);
   color: var(--red);
   margin: .1rem 0 0;
 }
@@ -405,7 +405,7 @@ html.lang-ar .edition-pill { justify-content: flex-start; }
 
 .j-intro { max-width: 62ch; }
 .j-intro .j-intro-para {
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
   line-height: 1.65;
   margin: 2.2rem 0 0;
   max-width: 62ch;
@@ -573,13 +573,13 @@ html.lang-ar .ed-caption { font-style: normal; }
 html.lang-ar .ed-label { letter-spacing: 0; text-transform: none; }
 .ed-para {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-  line-height: 1.7;
+  font-size: 1.4rem;
+  line-height: 1.65;
   color: #d8d5cd;
   margin: 0 0 1.1rem;
   max-width: 68ch;
 }
-html.lang-ar .ed-para { line-height: 2; }
+html.lang-ar .ed-para { line-height: 2.1; text-align: right; direction: rtl; }
 .ed-photo-row { display: flex; gap: 10px; margin-top: 1.4rem; }
 .ed-photo-row figure { flex: 1; margin: 0; min-width: 0; overflow: hidden; }
 .ed-photo-row img { width: 100%; height: clamp(140px, 20vw, 210px); object-fit: cover; display: block; }
@@ -662,7 +662,7 @@ html.lang-ar .ed-sub-title { letter-spacing: 0; }
 html.lang-ar .ed-detail-num { min-width: 1.4rem; }
 .ed-detail-text {
   font-family: "Cormorant Garamond", serif;
-  font-size: 1.05rem; line-height: 1.6; color: #d8d5cd;
+  font-size: 1.15rem; line-height: 1.6; color: #d8d5cd;
 }
 html.lang-ar .ed-detail-text { line-height: 1.9; }
 .ed-howto {
@@ -677,7 +677,7 @@ html.lang-ar .ed-detail-text { line-height: 1.9; }
 }
 .ed-howto-body {
   font-family: "Cormorant Garamond", serif;
-  font-size: .98rem; line-height: 1.6; color: #a3a09a;
+  font-size: 1.25rem; line-height: 1.6; color: #a3a09a;
   margin: 0;
 }
 html.lang-ar .ed-howto-body { line-height: 1.9; }
@@ -699,13 +699,13 @@ html.lang-ar .ed-kd-title { letter-spacing: 0; text-transform: none; }
 .ed-kd-row { display: flex; flex-direction: column; gap: .15rem; border-top: 1px solid var(--hairline); padding-top: .7rem; }
 .ed-kd-label {
   font-family: "Cormorant Garamond", serif;
-  font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+  font-size: 1rem; letter-spacing: .14em; text-transform: uppercase;
   color: #a3a09a;
 }
 html.lang-ar .ed-kd-label { letter-spacing: 0; text-transform: none; }
 .ed-kd-value {
   font-family: "Cormorant Garamond", serif;
-  font-size: 1.05rem; font-weight: 600; color: #f4f2ed;
+  font-size: 1.2rem; font-weight: 600; color: #f4f2ed;
 }
 .ed-submit {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
@@ -738,7 +738,7 @@ html.lang-ar .ed-guide h3 { font-size: 1.3rem; }
 .ed-guide li {
   position: relative;
   font-family: "Cormorant Garamond", serif;
-  font-size: .98rem; line-height: 1.55; color: #cfccc5;
+  font-size: 1.1rem; line-height: 1.55; color: #cfccc5;
   padding-left: 1rem; margin-bottom: .5rem;
 }
 .ed-guide li::before {
@@ -765,22 +765,41 @@ html.lang-ar .ed-cta { direction: rtl; }
 }
 .ed-cta-sub {
   font-family: "Cormorant Garamond", serif;
-  font-size: 1rem; color: #a3a09a;
+  font-size: 1.25rem; color: #a3a09a;
   margin: 0;
 }
+
+
+/* Edition page Arabic alignment (html.lang-ar) */
+html.lang-ar .ed-kicker { text-align: right; direction: rtl; }
+html.lang-ar .ed-caption { text-align: right; direction: rtl; }
+html.lang-ar .ed-label { text-align: right; direction: rtl; }
+html.lang-ar .ed-sub-title { text-align: right; direction: rtl; }
+html.lang-ar .ed-detail-list li { text-align: right; }
+html.lang-ar .ed-detail-text { text-align: right; direction: rtl; }
+html.lang-ar .ed-howto-title { text-align: right; direction: rtl; }
+html.lang-ar .ed-howto-body { text-align: right; direction: rtl; }
+html.lang-ar .ed-guide h3 { text-align: right; direction: rtl; }
+html.lang-ar .ed-guide li { text-align: right; direction: rtl; }
+html.lang-ar .ed-cta-text { text-align: right; direction: rtl; }
+html.lang-ar .ed-kd-title { text-align: right; direction: rtl; }
+html.lang-ar .ed-kd-label { text-align: right; direction: rtl; }
+html.lang-ar .ed-kd-value { text-align: right; direction: rtl; }
 
 /* ---- Popup modal (shared) ---- */
 .popup-overlay {
   position: fixed; inset: 0; z-index: 120;
   background: rgba(14, 14, 13, .92);
-  display: flex; align-items: center; justify-content: center;
-  padding: 1.5rem;
-  overflow-y: auto;
+  display: grid; place-items: center;
+  padding: 1rem;
 }
 .popup-overlay[hidden] { display: none; }
 .popup-panel {
-  position: relative;
   width: min(980px, 100%);
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: #211f1c;
   border: 1px solid #33302b;
   padding: clamp(1.6rem, 4vw, 2.6rem);
@@ -846,11 +865,12 @@ html.lang-ar .popup-caption { text-align: right; }
 }
 html.lang-ar .popup-caption { font-style: normal; }
 .popup-close {
-  position: absolute; top: .9rem; right: 1.1rem;
-  background: transparent; border: none; cursor: pointer;
-  font-size: 1.9rem; line-height: 1;
+  position: fixed; top: 1rem; right: 1.1rem; z-index: 130;
+  background: rgba(20, 20, 19, .75); border: 1px solid #33302b; border-radius: 50%;
+  cursor: pointer;
+  font-size: 2rem; line-height: 1;
   color: #f4f2ed;
-  padding: .2rem .4rem;
+  padding: .15rem .55rem;
 }
 html.lang-ar .popup-close { right: auto; left: 1.1rem; }
 .popup-close:hover { color: var(--red); }

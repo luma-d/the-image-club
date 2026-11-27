@@ -424,8 +424,8 @@ def popup_markup():
     return (
         '  <div class="popup-overlay" id="curatorPopup" role="dialog" aria-modal="true" '
         'aria-labelledby="popupName" hidden>\n'
+        '    <button class="popup-close" type="button" aria-label="Close">×</button>\n'
         '    <div class="popup-panel">\n'
-        '      <button class="popup-close" type="button" aria-label="Close">×</button>\n'
         '      <figure class="popup-portrait"><img src="assets/journal/baraa.jpg" alt="Portrait of Baraa Salih" loading="lazy" /></figure>\n'
         '      <div class="popup-text">\n'
         '        <p class="popup-kicker">%s</p>\n'
