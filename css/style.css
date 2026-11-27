@@ -406,6 +406,7 @@ html.lang-ar .edition-panel { align-items: flex-start; }
 html.lang-ar .edition-pill { justify-content: flex-start; }
 
 .j-intro { max-width: 62ch; }
+html.lang-ar .j-intro { margin-left: auto; margin-right: 0; }
 .j-intro .j-intro-para {
   font-size: clamp(1.15rem, 2vw, 1.35rem);
   line-height: 1.65;
@@ -529,7 +530,7 @@ html.lang-ar .breadcrumb { flex-direction: row-reverse; }
 .ed-hero { padding-top: 2.8rem; padding-bottom: 1.6rem; }
 .ed-kicker {
   font-family: "Cormorant Garamond", serif;
-  font-size: .82rem; font-weight: 700;
+  font-size: 1.1rem; font-weight: 700;
   letter-spacing: .28em; text-transform: uppercase;
   color: var(--red); margin: 0 0 .9rem;
 }
@@ -565,7 +566,7 @@ html.lang-ar .ed-caption { font-style: normal; }
 .ed-section { padding-top: 2.4rem; padding-bottom: 1.2rem; }
 .ed-label {
   font-family: "Cormorant Garamond", serif;
-  font-size: .8rem; font-weight: 700;
+  font-size: 1.08rem; font-weight: 700;
   letter-spacing: .24em; text-transform: uppercase;
   color: #f4f2ed;
   margin: 0 0 1.4rem;
@@ -606,7 +607,7 @@ html.lang-ar .ed-curator-card { direction: rtl; }
 html.lang-ar .ed-curator-name { text-align: right; }
 .ed-curator-role {
   font-family: "Cormorant Garamond", serif;
-  font-size: .78rem; font-weight: 700;
+  font-size: 1.05rem; font-weight: 700;
   letter-spacing: .26em; text-transform: uppercase;
   color: var(--red); margin: 0 0 .8rem;
 }
@@ -641,7 +642,7 @@ html.lang-ar .ed-opencall-grid { direction: rtl; }
 .ed-sub-title {
   font-family: "Cormorant Garamond", serif;
   font-weight: 600;
-  font-size: 1.35rem;
+  font-size: 1.8rem;
   margin: 0 0 .9rem;
   letter-spacing: .04em;
 }
@@ -693,7 +694,7 @@ html.lang-ar .ed-howto-body { line-height: 1.9; }
 }
 .ed-kd-title {
   font-family: "Cormorant Garamond", serif;
-  font-weight: 700; font-size: .78rem;
+  font-weight: 700; font-size: 1.05rem;
   letter-spacing: .24em; text-transform: uppercase;
   color: var(--red); margin: 0;
 }
@@ -732,15 +733,15 @@ html.lang-ar .ed-guide-row { direction: rtl; }
 }
 .ed-guide h3 {
   font-family: "Cormorant Garamond", serif;
-  font-weight: 600; font-size: 1.2rem;
+  font-weight: 600; font-size: 1.6rem;
   margin: 0 0 .6rem;
 }
-html.lang-ar .ed-guide h3 { font-size: 1.3rem; }
+html.lang-ar .ed-guide h3 { font-size: 1.75rem; }
 .ed-guide ul { list-style: none; margin: 0; padding: 0; }
 .ed-guide li {
   position: relative;
   font-family: "Cormorant Garamond", serif;
-  font-size: 1.1rem; line-height: 1.55; color: #cfccc5;
+  font-size: 1.25rem; line-height: 1.55; color: #cfccc5;
   padding-left: 1rem; margin-bottom: .5rem;
 }
 .ed-guide li::before {

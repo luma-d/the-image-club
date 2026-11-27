@@ -207,7 +207,7 @@ EDITION_MAIN = '''  <div class="subnav-wrap">
       <figure><img src="assets/journal/crosswalk.jpg" alt="Crosswalk" loading="lazy" /></figure>
       <figure><img src="assets/journal/protest.jpg" alt="Protest" loading="lazy" /></figure>
       <figure><img src="assets/journal/hate.jpg" alt="Protest poster" loading="lazy" /></figure>
-      <figure><img src="assets/journal/arch.jpg" alt="Archway" loading="lazy" /></figure>
+      <figure><img src="assets/journal/shoes.jpg" alt="Photograph from the streets" loading="lazy" /></figure>
     </div>
   </section>
 
@@ -445,7 +445,7 @@ def popup_markup():
         '    </div>\n'
         '  </div>\n'
     ) % (
-        pair("Guest curator · Edition 01", "القيّم الفني الضيف · العدد الأول"),
+        pair("Guest curator · Edition 01", "المقيّم الفني للصور · العدد الأول"),
         pair("Baraa Salih", "براء صالح"),
         pair("An independent photographer working across documentary photography and personal visual storytelling.",
              "مصوّر مستقل يعمل بين التصوير الوثائقي والسرد البصري الشخصي."),
@@ -472,12 +472,12 @@ def edition_values():
         "BC_HOME": pair("Diaries", "يوميات"),
         "BC_CURRENT": pair("Edition 01 · From the Streets", "العدد الأول · من الشارع"),
         "A_THEME": pair("The theme", "الموضوع"),
-        "A_CURATOR": pair("Guest curator", "القيّم الفني الضيف"),
+        "A_CURATOR": pair("Guest curator", "المقيّم الفني للصور"),
         "A_OPEN": pair("Open call", "الدعوة المفتوحة"),
         "A_SUBMIT": pair("Submit your work ↗", "قدّم مشاركتك ↗"),
         "HERO_KICKER": pair("First Edition · Open Call", "العدد الأول · دعوة مفتوحة للمشاركة"),
         "HERO_TITLE": pair("From the Streets", "من الشارع"),
-        "HERO_CAPTION": pair("Photographs: Luma Darwish", "الصور: لوما درويش"),
+        "HERO_CAPTION": pair("Photographs: Luma Darwish", "الصور: لُمى درويش"),
         "ABOUT_NUM": pair("01", "٠١"),
         "ABOUT_LABEL": pair("About the theme", "عن الموضوع"),
         "ABOUT_P1": pair("The street is an open space where everyday life unfolds. It is where faces, stories and fleeting encounters intersect, and where our relationships with places and one another take shape.",
@@ -487,7 +487,7 @@ def edition_values():
         "ABOUT_P3": pair("We are not looking for a fixed definition of street photography. We welcome different experiences and perspectives, and photographs that reflect how each photographer sees the world around them.",
                          "لا نبحث عن تعريف محدد للتصوير الشارع، بل نرحّب بتجارب ورؤى مختلفة، وكل صورة تعكس طريقة صاحبها في رؤية العالم من حوله."),
         "CURATOR_NUM": pair("02", "٠٢"),
-        "CURATOR_SECTION_LABEL": pair("Guest curator", "القيّم الفني الضيف"),
+        "CURATOR_SECTION_LABEL": pair("Guest curator", "المقيّم الفني للصور"),
         "CURATOR_NAME": pair("Baraa Salih", "براء صالح"),
         "CURATOR_ROLE": pair("Independent photographer", "مصوّر مستقل"),
         "CURATOR_BIO": pair("An independent photographer working across documentary photography and personal visual storytelling. His practice has taken him between Syria, Turkey and France, and he approaches street photography as a way to rediscover places and people's relationships with them.",
