@@ -191,7 +191,6 @@ EDITION_MAIN = '''  <div class="subnav-wrap">
     <p class="ed-kicker">{HERO_KICKER}</p>
     <h1 class="ed-title">{HERO_TITLE}</h1>
     <div class="ed-mosaic">
-      <figure class="ed-m-shoes"><img src="assets/journal/shoes.jpg" alt="Photograph from the streets" loading="lazy" /></figure>
       <figure class="ed-m-protest"><img src="assets/journal/protest.jpg" alt="Protest" loading="lazy" /></figure>
     </div>
     <p class="ed-caption">{HERO_CAPTION}</p>
@@ -444,7 +443,7 @@ def popup_markup():
         '    </div>\n'
         '  </div>\n'
     ) % (
-        pair("Guest curator · Edition 01", "القَيِّم الفَنِّي لِلصُّوَر · العدد الأول"),
+        pair("Guest curator · Edition 01", "القيّم الفني للصور · العدد الأول"),
         pair("Baraa Salih", "براء صالح"),
         pair("An independent photographer working across documentary photography and personal visual storytelling.",
              "مصوّر مستقل يعمل بين التصوير الوثائقي والسرد البصري الشخصي."),
@@ -471,7 +470,7 @@ def edition_values():
         "BC_HOME": pair("Diaries", "يوميات"),
         "BC_CURRENT": pair("Edition 01 · From the Streets", "العدد الأول · من الشارع"),
         "A_THEME": pair("The theme", "الموضوع"),
-        "A_CURATOR": pair("Guest curator", "القَيِّم الفَنِّي لِلصُّوَر"),
+        "A_CURATOR": pair("Guest curator", "القيّم الفني للصور"),
         "A_OPEN": pair("Open call", "الدعوة المفتوحة"),
         "A_SUBMIT": pair("Submit your work ↗", "قدّم مشاركتك ↗"),
         "HERO_KICKER": pair("First Edition · Open Call", "العدد الأول · دعوة مفتوحة للمشاركة"),
@@ -486,7 +485,7 @@ def edition_values():
         "ABOUT_P3": pair("We are not looking for a fixed definition of street photography. We welcome different experiences and perspectives, and photographs that reflect how each photographer sees the world around them.",
                          "لا نبحث عن تعريف محدد للتصوير الشارع، بل نرحّب بتجارب ورؤى مختلفة، وكل صورة تعكس طريقة صاحبها في رؤية العالم من حوله."),
         "CURATOR_NUM": pair("02", "٠٢"),
-        "CURATOR_SECTION_LABEL": pair("Guest curator", "القَيِّم الفَنِّي لِلصُّوَر"),
+        "CURATOR_SECTION_LABEL": pair("Guest curator", "القيّم الفني للصور"),
         "CURATOR_NAME": pair("Baraa Salih", "براء صالح"),
         "CURATOR_ROLE": pair("Independent photographer", "مصوّر مستقل"),
         "CURATOR_BIO": pair("An independent photographer working across documentary photography and personal visual storytelling. His practice has taken him between Syria, Turkey and France, and he approaches street photography as a way to rediscover places and people's relationships with them.",
